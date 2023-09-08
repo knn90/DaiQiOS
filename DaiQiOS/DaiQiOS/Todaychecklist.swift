@@ -9,12 +9,12 @@ struct ChecklistItem {
 struct Container:View{
     var body: some View{
         ZStack {
-                   Color.white.edgesIgnoringSafeArea(.all)
-                   
-                   Todaychecklist()
-                       .background(Color.white)
-                       .padding()
-                     }
+            Color.white.edgesIgnoringSafeArea(.all)
+            
+            Todaychecklist()
+                .background(Color.white)
+                .padding()
+        }
     }
 }
 
@@ -55,17 +55,17 @@ struct Todaychecklist: View {
                 }
             }
             Button(action: {}) {
-                           Image(systemName: "plus")
-                               .font(.system(size: 24))
-                               .frame(width: 64, height: 64)
-                               .background(Color.blue)
-                               .foregroundColor(.white)
-                               .clipShape(Circle())
-                       }
+                Image(systemName: "plus")
+                    .font(.system(size: 24))
+                    .frame(width: 64, height: 64)
+                    .background(Color.purple.opacity(0.3))
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
+            }
         }
-                    .listStyle(PlainListStyle())
-                
-            
+        .listStyle(PlainListStyle())
+        
+        
     }
     
     struct Todaychecklist_Previews: PreviewProvider {
