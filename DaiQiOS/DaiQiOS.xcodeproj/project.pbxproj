@@ -12,19 +12,10 @@
 		6AF080F02AAACC02007810B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF080EF2AAACC02007810B8 /* Assets.xcassets */; };
 		6AF080F32AAACC02007810B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF080F22AAACC02007810B8 /* Preview Assets.xcassets */; };
 		6AF080FD2AAACC02007810B8 /* DaiQiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF080FC2AAACC02007810B8 /* DaiQiOSTests.swift */; };
-		6AF081072AAACC02007810B8 /* DaiQiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF081062AAACC02007810B8 /* DaiQiOSUITests.swift */; };
-		6AF081092AAACC02007810B8 /* DaiQiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF081082AAACC02007810B8 /* DaiQiOSUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		6AF080F92AAACC02007810B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6AF080E02AAACC00007810B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6AF080E72AAACC00007810B8;
-			remoteInfo = DaiQiOS;
-		};
-		6AF081032AAACC02007810B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6AF080E02AAACC00007810B8 /* Project object */;
 			proxyType = 1;
@@ -41,9 +32,6 @@
 		6AF080F22AAACC02007810B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AF080F82AAACC02007810B8 /* DaiQiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaiQiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF080FC2AAACC02007810B8 /* DaiQiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaiQiOSTests.swift; sourceTree = "<group>"; };
-		6AF081022AAACC02007810B8 /* DaiQiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaiQiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AF081062AAACC02007810B8 /* DaiQiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaiQiOSUITests.swift; sourceTree = "<group>"; };
-		6AF081082AAACC02007810B8 /* DaiQiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaiQiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6AF080FF2AAACC02007810B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,7 +57,6 @@
 			children = (
 				6AF080EA2AAACC00007810B8 /* DaiQiOS */,
 				6AF080FB2AAACC02007810B8 /* DaiQiOSTests */,
-				6AF081052AAACC02007810B8 /* DaiQiOSUITests */,
 				6AF080E92AAACC00007810B8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +66,6 @@
 			children = (
 				6AF080E82AAACC00007810B8 /* DaiQiOS.app */,
 				6AF080F82AAACC02007810B8 /* DaiQiOSTests.xctest */,
-				6AF081022AAACC02007810B8 /* DaiQiOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,15 +95,6 @@
 				6AF080FC2AAACC02007810B8 /* DaiQiOSTests.swift */,
 			);
 			path = DaiQiOSTests;
-			sourceTree = "<group>";
-		};
-		6AF081052AAACC02007810B8 /* DaiQiOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6AF081062AAACC02007810B8 /* DaiQiOSUITests.swift */,
-				6AF081082AAACC02007810B8 /* DaiQiOSUITestsLaunchTests.swift */,
-			);
-			path = DaiQiOSUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,24 +135,6 @@
 			productReference = 6AF080F82AAACC02007810B8 /* DaiQiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		6AF081012AAACC02007810B8 /* DaiQiOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6AF081122AAACC02007810B8 /* Build configuration list for PBXNativeTarget "DaiQiOSUITests" */;
-			buildPhases = (
-				6AF080FE2AAACC02007810B8 /* Sources */,
-				6AF080FF2AAACC02007810B8 /* Frameworks */,
-				6AF081002AAACC02007810B8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6AF081042AAACC02007810B8 /* PBXTargetDependency */,
-			);
-			name = DaiQiOSUITests;
-			productName = DaiQiOSUITests;
-			productReference = 6AF081022AAACC02007810B8 /* DaiQiOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +149,6 @@
 						CreatedOnToolsVersion = 14.3.1;
 					};
 					6AF080F72AAACC02007810B8 = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 6AF080E72AAACC00007810B8;
-					};
-					6AF081012AAACC02007810B8 = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = 6AF080E72AAACC00007810B8;
 					};
@@ -221,7 +169,6 @@
 			targets = (
 				6AF080E72AAACC00007810B8 /* DaiQiOS */,
 				6AF080F72AAACC02007810B8 /* DaiQiOSTests */,
-				6AF081012AAACC02007810B8 /* DaiQiOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,13 +184,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6AF080F62AAACC02007810B8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AF081002AAACC02007810B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -270,15 +210,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6AF080FE2AAACC02007810B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AF081072AAACC02007810B8 /* DaiQiOSUITests.swift in Sources */,
-				6AF081092AAACC02007810B8 /* DaiQiOSUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -286,11 +217,6 @@
 			isa = PBXTargetDependency;
 			target = 6AF080E72AAACC00007810B8 /* DaiQiOS */;
 			targetProxy = 6AF080F92AAACC02007810B8 /* PBXContainerItemProxy */;
-		};
-		6AF081042AAACC02007810B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6AF080E72AAACC00007810B8 /* DaiQiOS */;
-			targetProxy = 6AF081032AAACC02007810B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -503,40 +429,6 @@
 			};
 			name = Release;
 		};
-		6AF081132AAACC02007810B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietxcode.DaiQiOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DaiQiOS;
-			};
-			name = Debug;
-		};
-		6AF081142AAACC02007810B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietxcode.DaiQiOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DaiQiOS;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -563,15 +455,6 @@
 			buildConfigurations = (
 				6AF081102AAACC02007810B8 /* Debug */,
 				6AF081112AAACC02007810B8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6AF081122AAACC02007810B8 /* Build configuration list for PBXNativeTarget "DaiQiOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6AF081132AAACC02007810B8 /* Debug */,
-				6AF081142AAACC02007810B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
