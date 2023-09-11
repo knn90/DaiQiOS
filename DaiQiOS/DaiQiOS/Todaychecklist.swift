@@ -1,25 +1,24 @@
 import SwiftUI
+
 struct TodayChecklist: View {
+    
+    var checklistItems: [ChecklistItem] = [
+        ChecklistItem(title: "Task 1", description: "Description 1"),
+        ChecklistItem(title: "Task 2", description: "Description 2"),
+        ChecklistItem(title: "Task 3", description: "Description 3")
+    ]
+    
     var body: some View {
-        ZStack {
-            VStack{
-                NavigationView {
-                    Text("Today Checklist")
-                }
-                .navigationTitle("Today Checklist")
-                .frame(height: 50)
-                .font(.title)
-                .bold()
-                
-                List {
-                    ForEach(checklistItems.indices, id: \.self) { index in
-                        TaskCell(index: index)
-                    }
-                    .listStyle(PlainListStyle())
+        NavigationView {
+            ZStack {
+                List(checklistItems) { item in
+                    TaskCell(checklistItem: item)
                 }
                 addTaskButton()
-            }            
+            }
+            .navigationTitle("Today Checklist")
         }
+        
     }
     @ViewBuilder
     private func addTaskButton() -> some View {
@@ -32,10 +31,11 @@ struct TodayChecklist: View {
                 .clipShape(Circle())
         }
     }
-        
+    
     struct TodayChecklist_Previews: PreviewProvider {
         static var previews: some View {
             TodayChecklist()
         }
     }
+    
 }
