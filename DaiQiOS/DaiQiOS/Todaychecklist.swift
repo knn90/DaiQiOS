@@ -11,32 +11,14 @@ struct TodayChecklist: View {
         ZStack {
             VStack{
                 NavigationView {
-                    NavigationLink(destination: Text("Second View")) {
-                        Text("Quest")
-                    }
-                }.frame(height: 100)
-                    .font(.title)
-                
-                List {
-                    Text("Today Checklist")
-                        .font(.title)
-                        .bold()
+                   Text("Today Checklist")
+    }
+                .navigationTitle("Today Checklist")  .frame(height: 50)
+                .font(.title)
+                .bold()
+                            List {
                     ForEach(checklistItems.indices, id: \.self) { index in
-                        HStack {
-                            Image(systemName: checklistItems[index].isChecked ? "checkmark.square.fill" : "square")
-                                .onTapGesture {
-                                    checklistItems[index].isChecked.toggle()
-                                }
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(checklistItems[index].title)
-                                    .font(.headline)
-                                
-                                Text(checklistItems[index].description)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
+                 TaskCell()
                     }
                 }
                 addTaskButton()
@@ -45,7 +27,26 @@ struct TodayChecklist: View {
         }
         .listStyle(PlainListStyle())
     }
-    
+//    
+//    struct TaskCell: View {
+//        var body: some View {
+//            HStack {
+//                Image(systemName: checklistItems[index].isChecked ? "checkmark.square.fill" : "square")
+//                    .onTapGesture {
+//                        checklistItems[index].isChecked.toggle()
+//                    }
+//                
+//                VStack(alignment: .leading, spacing: 4) {
+//                    Text(checklistItems[index].title)
+//                        .font(.headline)
+//                    
+//                    Text(checklistItems[index].description)
+//                        .font(.subheadline)
+//                        .foregroundColor(.secondary)
+//                }
+//            }
+//        }
+//    }
     @ViewBuilder
     private func addTaskButton() -> some View {
         Button(action: {}) {
