@@ -9,11 +9,13 @@ struct TodayChecklist: View {
     
     var body: some View {
         ZStack {
-            //            Color.white.edgesIgnoringSafeArea(.all)
             VStack{
-                Text("Quest")
-                    .padding(20)
-                    .frame(alignment: .center)
+                NavigationView {
+                    NavigationLink(destination: Text("Second View")) {
+                        Text("Quest")
+                    }
+                }.frame(height: 100)
+                    .font(.title)
                 
                 List {
                     Text("Today Checklist")
@@ -37,18 +39,23 @@ struct TodayChecklist: View {
                         }
                     }
                 }
-                Button(action: {}) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 24))
-                        .frame(width: 64, height: 64)
-                        .background(Color.purple.opacity(0.3))
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                }
+                addTaskButton()
             }
             
         }
         .listStyle(PlainListStyle())
+    }
+    
+    @ViewBuilder
+    private func addTaskButton() -> some View {
+        Button(action: {}) {
+            Image(systemName: "plus")
+                .font(.system(size: 24))
+                .frame(width: 64, height: 64)
+                .background(Color.purple.opacity(0.3))
+                .foregroundColor(.white)
+                .clipShape(Circle())
+        }
     }
 }
 
