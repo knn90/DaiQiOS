@@ -5,35 +5,38 @@ struct EditTask: View {
     @State private var text = ""
     
     var body: some View {
+       
         NavigationView {
+            
             VStack(alignment: .leading) {
                 HStack {
                     TextField("Enter title", text: $title)
-                        .padding()
-                        .cornerRadius(5)
+                        .font(.title)
                 }
-                
+                Divider()
                 HStack {
-                   TextEditor(text: $text)
-                        .frame(height: 200)
-                        .border(Color.gray, width: 1)
+                    TextField("enter conten",text: $text, axis: .vertical)
+                        .frame(height: 100)
                         .cornerRadius(5)
+                        .font(.body)
                 }
+                Spacer()
                 Button(action: {}) {
                     Text("Submit")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                         .padding()
-                        .background(Color.purple.opacity(0.3))
-                        .cornerRadius(20)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(30)
+                        .shadow(color:.black,radius: 100)
+                    
                 }
                 .frame(maxWidth: .infinity)
-                
-                Spacer()
             }
             .padding()
             .navigationBarTitle("Edit Task", displayMode: .inline)
         }
+        
     }
 }
 
