@@ -1,11 +1,13 @@
 import SwiftUI
 struct TaskCell: View {
-    let checklistItem : ChecklistItem
-    var body: some View {
+    @State var checklistItem: ChecklistItem
+  var body: some View {
         
         HStack {
             Image(systemName: checklistItem.isChecked ? "checkmark.square.fill" : "square")
-                .onTapGesture {}
+                .onTapGesture {
+                    self.checklistItem.isChecked.toggle()
+                }
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(checklistItem.title)
@@ -21,7 +23,7 @@ struct TaskCell: View {
 
 struct TaskCell_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCell(checklistItem: ChecklistItem(title: "title", description: "description"))
+        TaskCell(checklistItem: ChecklistItem(title: "title", description: "description", isChecked: false))
     }
 }
 
