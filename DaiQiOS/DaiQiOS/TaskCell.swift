@@ -8,10 +8,9 @@ var checklistItems: [ChecklistItem] = [
     ]
     
 struct TaskCell: View {
+    let index: Int
     var body: some View {
-        
-        ForEach(checklistItems.indices, id: \.self) { index in
-            HStack {
+        HStack {
                 Image(systemName: checklistItems[index].isChecked ? "checkmark.square.fill" : "square")
                     .onTapGesture {
                         checklistItems[index].isChecked.toggle()
@@ -31,7 +30,7 @@ struct TaskCell: View {
     
     struct TaskCell_Previews: PreviewProvider {
         static var previews: some View {
-            TaskCell()
+            TaskCell(index: 0)
         }
     }
-}
+

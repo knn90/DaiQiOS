@@ -12,32 +12,30 @@ struct TodayChecklist: View {
                 .bold()
                 
                 List {
-                    TaskCell()
+                    ForEach(checklistItems.indices, id: \.self) { index in
+                        TaskCell(index: index)
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
-            }
-            addTaskButton()
+                addTaskButton()
+            }            
         }
+    }
+    @ViewBuilder
+    private func addTaskButton() -> some View {
+        Button(action: {}) {
+            Image(systemName: "plus")
+                .font(.system(size: 24))
+                .frame(width: 64, height: 64)
+                .background(Color.purple.opacity(0.3))
+                .foregroundColor(.white)
+                .clipShape(Circle())
+        }
+    }
         
-    }
-    
-}
-@ViewBuilder
-private func addTaskButton() -> some View {
-    Button(action: {}) {
-        Image(systemName: "plus")
-            .font(.system(size: 24))
-            .frame(width: 64, height: 64)
-            .background(Color.purple.opacity(0.3))
-            .foregroundColor(.white)
-            .clipShape(Circle())
+    struct TodayChecklist_Previews: PreviewProvider {
+        static var previews: some View {
+            TodayChecklist()
+        }
     }
 }
-
-
-struct TodayChecklist_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayChecklist()
-    }
-}
-
