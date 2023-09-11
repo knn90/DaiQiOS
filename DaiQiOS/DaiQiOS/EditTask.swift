@@ -8,26 +8,26 @@ struct EditTask: View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Title")
-                        .font(.headline)
-                        .padding(.trailing, 8)
-                    
                     TextField("Enter title", text: $title)
                         .padding()
-                        .border(Color.gray, width: 1)
                         .cornerRadius(5)
                 }
                 
                 HStack {
-                    Text("Description")
-                        .font(.headline)
-                        .padding(.trailing, 8)
-                    
-                    TextEditor(text: $text)
+                   TextEditor(text: $text)
                         .frame(height: 200)
                         .border(Color.gray, width: 1)
                         .cornerRadius(5)
                 }
+                Button(action: {}) {
+                    Text("Submit")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.purple.opacity(0.3))
+                        .cornerRadius(20)
+                }
+                .frame(maxWidth: .infinity)
                 
                 Spacer()
             }
