@@ -87,11 +87,11 @@
 				6ED4A38B2AAED3710015644D /* Models.swift */,
 				6ED4A3852AAEC5D20015644D /* TaskCell.swift */,
 				6EF298932AAAD5FD008EFFAB /* Todaychecklist.swift */,
+				6ED4A3892AAECAB80015644D /* EditTask.swift */,
 				6AF080EB2AAACC00007810B8 /* DaiQiOSApp.swift */,
 				6AF080ED2AAACC00007810B8 /* ContentView.swift */,
 				6AF080EF2AAACC02007810B8 /* Assets.xcassets */,
 				6AF080F12AAACC02007810B8 /* Preview Content */,
-				6ED4A3892AAECAB80015644D /* EditTask.swift */,
 			);
 			path = DaiQiOS;
 			sourceTree = "<group>";
@@ -371,6 +371,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,6 +401,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
