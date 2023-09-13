@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ChecklistItem: Identifiable {
+struct ChecklistItem: Identifiable, Hashable {
     var title: String
     var description: String
     var isChecked: Bool = false
