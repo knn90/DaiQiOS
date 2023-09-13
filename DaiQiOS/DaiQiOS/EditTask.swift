@@ -5,7 +5,7 @@ struct EditTask: View {
     @State private var text = ""
     
     var body: some View {
-       
+        
         NavigationView {
             
             VStack(alignment: .leading) {
@@ -15,7 +15,7 @@ struct EditTask: View {
                 }
                 Divider()
                 HStack {
-                    TextField("enter conten",text: $text, axis: .vertical)
+                    TextField("enter description",text: $text, axis: .vertical)
                         .frame(height: 100)
                         .cornerRadius(5)
                         .font(.body)
@@ -34,7 +34,7 @@ struct EditTask: View {
                 .frame(maxWidth: .infinity)
             }
             .padding()
-            .navigationBarTitle("Edit Task", displayMode: .inline)
+            
         }
         
     }
