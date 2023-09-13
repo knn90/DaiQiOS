@@ -12,16 +12,18 @@ struct TodayChecklist: View {
         NavigationView {
             ZStack {
                 List {
-                    Section{   ForEach(checklistItems, id: \.self) { item in
-                        NavigationLink(destination: EditTask()) {
-                            TaskCell(checklistItem: item)
+                    Section{
+                        ForEach(checklistItems, id: \.self) { item in
+                            NavigationLink(destination: EditTask(checklistItem: item)) {
+                                TaskCell(checklistItem: item)
+                            }
                         }
-                    }                    .onDelete(perform: { indexSet in
-                        delete(indexSet: indexSet)
-                    })
-
+                        .onDelete(perform: { indexSet in
+                            delete(indexSet: indexSet)
+                        })
+                        
                     }
-                 }
+                }
                 .navigationTitle("Today Checklist")
                 addTaskButton()
             }

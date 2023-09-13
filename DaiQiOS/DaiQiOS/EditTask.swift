@@ -3,19 +3,18 @@ import SwiftUI
 struct EditTask: View {
     @State private var title = ""
     @State private var text = ""
-    
+    var checklistItem : ChecklistItem
     var body: some View {
-        
+     
         NavigationView {
             
             VStack(alignment: .leading) {
                 HStack {
-                    TextField("Enter title", text: $title)
-                        .font(.title)
+                    TextField(checklistItem.title, text: $title)
                 }
                 Divider()
                 HStack {
-                    TextField("enter description",text: $text, axis: .vertical)
+                    TextField(checklistItem.description,text: $text,axis: .vertical)
                         .frame(height: 100)
                         .cornerRadius(5)
                         .font(.body)
@@ -42,6 +41,6 @@ struct EditTask: View {
 
 struct EditTask_Previews: PreviewProvider {
     static var previews: some View {
-        EditTask()
+        EditTask(checklistItem: ChecklistItem(title: "title", description: "description"))
     }
 }
