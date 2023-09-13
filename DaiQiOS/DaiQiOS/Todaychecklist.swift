@@ -12,7 +12,7 @@ struct TodayChecklist: View {
         NavigationView {
             ZStack {
                 List(checklistItems) { item in
-                    TaskCell(checklistItem: item)
+                    NavigationLink(destination:EditTask() ){TaskCell(checklistItem: item)}
                 }
                 addTaskButton()
             }
