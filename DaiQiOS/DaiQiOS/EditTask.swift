@@ -1,20 +1,19 @@
 import SwiftUI
 
 struct EditTask: View {
-    @State private var title = ""
+    @Binding var checklistItem: ChecklistItem
     @State private var text = ""
-    var checklistItem : ChecklistItem
+
+
     var body: some View {
-     
         NavigationView {
-            
             VStack(alignment: .leading) {
                 HStack {
-                    TextField(checklistItem.title, text: $title)
+                    TextField("Title", text: $checklistItem.title)
                 }
                 Divider()
                 HStack {
-                    TextField(checklistItem.description,text: $text,axis: .vertical)
+                    TextEditor(text: $checklistItem.description)
                         .frame(height: 100)
                         .cornerRadius(5)
                         .font(.body)
@@ -27,20 +26,14 @@ struct EditTask: View {
                         .padding()
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(30)
-                        .shadow(color:.black,radius: 100)
-                    
+                        .shadow(radius: 10)
                 }
                 .frame(maxWidth: .infinity)
             }
             .padding()
-            
         }
-        
+        .navigationTitle("Edit Task")
     }
 }
 
-struct EditTask_Previews: PreviewProvider {
-    static var previews: some View {
-        EditTask(checklistItem: ChecklistItem(title: "title", description: "description"))
-    }
-}
+
