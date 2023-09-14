@@ -1,10 +1,11 @@
 import SwiftUI
 struct TaskCell: View {
-    @State var checklistItem: ChecklistItem
-  var body: some View {
+    @State  var checklistItem: ChecklistItem
+    var body: some View {
         
         HStack {
             Image(systemName: checklistItem.isChecked ? "checkmark.square.fill" : "square")
+                .foregroundColor(checklistItem.isChecked ? Color.blue : Color.primary)
                 .onTapGesture {
                     self.checklistItem.isChecked.toggle()
                 }
