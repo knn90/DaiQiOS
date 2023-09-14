@@ -1,25 +1,26 @@
 import SwiftUI
-
 struct EditTask: View {
     @Binding var checklistItem: ChecklistItem
-    @State private var text = ""
-
+    @State private var title = ""
+    @State private var description = ""
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack {
-                    TextField("Title", text: $checklistItem.title)
+                    TextField("Title", text: $title)
                 }
                 Divider()
                 HStack {
-                    TextEditor(text: $checklistItem.description)
+                    TextEditor(text: $description)
                         .frame(height: 100)
                         .cornerRadius(5)
                         .font(.body)
                 }
                 Spacer()
-                Button(action: {}) {
+                Button(action: {
+                    saveChanges()
+                }) {
                     Text("Submit")
                         .font(.headline)
                         .foregroundColor(.blue)
@@ -31,9 +32,16 @@ struct EditTask: View {
                 .frame(maxWidth: .infinity)
             }
             .padding()
+            .onAppear {
+                title = checklistItem.title
+                description = checklistItem.description
+            }
         }
         .navigationTitle("Edit Task")
     }
+
+    private func saveChanges() {
+        checklistItem.title = title
+        checklistItem.description = description
+    }
 }
-
-

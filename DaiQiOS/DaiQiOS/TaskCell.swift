@@ -1,6 +1,6 @@
 import SwiftUI
 struct TaskCell: View {
-    @State var checklistItem: ChecklistItem
+    @State  var checklistItem: ChecklistItem
     var body: some View {
         
         HStack {

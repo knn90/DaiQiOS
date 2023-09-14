@@ -11,10 +11,11 @@ struct TodayChecklist: View {
         NavigationView {
             List {
                 Section {
-                    ForEach(checklistItems.indices, id: \.self) { index in
-                        NavigationLink(destination: EditTask(checklistItem: $checklistItems[index])) {
-                            TaskCell(checklistItem: checklistItems[index])
+                    ForEach(checklistItems) { item in
+                        NavigationLink(destination: EditTask(checklistItem: $checklistItems[getIndex(for: item)])) {
+                            TaskCell(checklistItem: item)
                         }
+                        
                     }
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
@@ -49,6 +50,13 @@ struct TodayChecklist: View {
         }
     }
     
+    private func getIndex(for item: ChecklistItem) -> Int {
+        if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
+            return index
+        }
+        return 0
+        
+    }
     func delete(indexSet: IndexSet) {
         checklistItems.remove(atOffsets: indexSet)
     }
