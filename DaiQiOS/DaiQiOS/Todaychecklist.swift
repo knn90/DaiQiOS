@@ -15,7 +15,7 @@ struct TodayChecklist: View {
                         NavigationLink(destination: EditTask(checklistItem: $checklistItems[index])) {
                             TaskCell(checklistItem: item)
                         }
-                        }
+                    }
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
                     })
@@ -37,7 +37,6 @@ struct TodayChecklist: View {
                 checklistItems.append(checklistItem)
             })) {
                 Button(action: {
-                    
                 }) {
                     Image(systemName: "plus")
                         .font(.system(size: 24))
@@ -47,8 +46,6 @@ struct TodayChecklist: View {
                         .clipShape(Circle())
                 }
             }
-            
-            Spacer()
         }
     }
     

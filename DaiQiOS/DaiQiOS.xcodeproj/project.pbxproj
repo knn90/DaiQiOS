@@ -83,6 +83,7 @@
 		6AF080EA2AAACC00007810B8 /* DaiQiOS */ = {
 			isa = PBXGroup;
 			children = (
+				6ED261042AB95AB100F711A7 /* AddTask.swift */,
 				6ED4A3872AAEC68A0015644D /* CheckListItem.swift */,
 				6ED4A38B2AAED3710015644D /* Models.swift */,
 				6ED4A3852AAEC5D20015644D /* TaskCell.swift */,
@@ -91,7 +92,6 @@
 				6AF080EB2AAACC00007810B8 /* DaiQiOSApp.swift */,
 				6AF080EF2AAACC02007810B8 /* Assets.xcassets */,
 				6AF080F12AAACC02007810B8 /* Preview Content */,
-				6ED261042AB95AB100F711A7 /* AddTask.swift */,
 			);
 			path = DaiQiOS;
 			sourceTree = "<group>";
