@@ -5,6 +5,7 @@ struct AddTask: View {
     @State private var title = ""
     @State private var description = ""
     @Environment(\.presentationMode) var presentationMode
+    @State private var showAlert = false
     var onTaskSubmit: ((ChecklistItem) -> Void)?
     
     init(onTaskSubmit: @escaping (ChecklistItem) -> Void) {
@@ -26,13 +27,22 @@ struct AddTask: View {
             .padding()
         }
         .navigationTitle("Add Task")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Empty Fields"),
+                message: Text("Both Title and Description cannot be empty.")
+            )
+        }
     }
     
     @ViewBuilder
-    private func submitAddTaskButton() -> some View{
+    private func submitAddTaskButton() -> some View {
         Button(action: {
-            saveChanges()
-        }) {
+            if title.isEmpty || description.isEmpty {
+                showAlert = true
+            } else {
+                saveChanges()
+            }}) {
             Text("Submit")
                 .font(.headline)
                 .foregroundColor(.blue)

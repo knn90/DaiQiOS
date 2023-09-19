@@ -1,9 +1,11 @@
 import SwiftUI
+
 struct EditTask: View {
     @Binding var checklistItem: ChecklistItem
     @State private var title = ""
     @State private var description = ""
-    
+    @State private var showAlert = false
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -23,12 +25,25 @@ struct EditTask: View {
             }
         }
         .navigationTitle("Edit Task")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Empty Fields"),
+                message: Text("Both Title and Description cannot be empty."),
+                dismissButton: .default(Text("OK")) {
+                }
+            )
+        }
     }
+
     @ViewBuilder
     private func submitEditButton() -> some View {
         Button(action: {
-            saveChanges()
-        }){
+            if title.isEmpty || description.isEmpty {
+                showAlert = true
+            } else {
+                saveChanges()
+            }
+        }) {
             Text("Submit")
                 .font(.headline)
                 .foregroundColor(.blue)
@@ -39,6 +54,7 @@ struct EditTask: View {
         }
         .frame(maxWidth: .infinity)
     }
+
     private func saveChanges() {
         checklistItem.title = title
         checklistItem.description = description
