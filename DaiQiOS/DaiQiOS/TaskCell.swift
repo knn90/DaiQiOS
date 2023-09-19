@@ -5,7 +5,7 @@ struct TaskCell: View {
         
         HStack {
             Image(systemName: checklistItem.isChecked ? "checkmark.square.fill" : "square")
-                .foregroundColor(checklistItem.isChecked ? Color.blue : Color.primary)
+                .foregroundColor(checklistItem.isChecked ? Color.purple : Color.primary.opacity(0.3))
                 .onTapGesture {
                     self.checklistItem.isChecked.toggle()
                 }

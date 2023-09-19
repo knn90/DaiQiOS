@@ -6,7 +6,7 @@ struct TodayChecklist: View {
         ChecklistItem(title: "Task 2", description: "Description 2"),
         ChecklistItem(title: "Task 3", description: "Description 3")
     ]
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -24,7 +24,7 @@ struct TodayChecklist: View {
                     addTaskButton()
                 }
             }
-          
+            
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Today Checklist")
         }
@@ -33,19 +33,19 @@ struct TodayChecklist: View {
     @ViewBuilder
     private func addTaskButton() -> some View {
         HStack {
-            Spacer()
-            Button(action: {
-                let newItem = ChecklistItem(title: "New Task", description: "New Description")
-                checklistItems.append(newItem)
-            }) {
-                Image(systemName: "plus")
-                    .font(.system(size: 24))
-                    .frame(width: 64, height: 64)
-                    .background(Color.purple.opacity(0.3))
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
+            NavigationLink(destination: AddTask(onTaskSubmit: { checklistItem in
+                checklistItems.append(checklistItem)
+            })) {
+                Button(action: {
+                }) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 24))
+                        .frame(minWidth: 64 , maxWidth: .infinity, minHeight: 64)
+                        .background(Color.purple.opacity(0.3))
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                }
             }
-            Spacer()
         }
     }
     
@@ -57,11 +57,11 @@ struct TodayChecklist: View {
         
     }
     func delete(indexSet: IndexSet) {
-            for index in indexSet {
-                checklistItems.remove(at: index)
-            }
+        for index in indexSet {
+            checklistItems.remove(at: index)
         }
-
+    }
+    
     struct TodayChecklist_Previews: PreviewProvider {
         static var previews: some View {
             TodayChecklist()

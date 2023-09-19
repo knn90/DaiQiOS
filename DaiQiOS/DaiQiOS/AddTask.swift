@@ -1,8 +1,15 @@
+
 import SwiftUI
-struct EditTask: View {
-    @Binding var checklistItem: ChecklistItem
+
+struct AddTask: View {
     @State private var title = ""
     @State private var description = ""
+    @Environment(\.presentationMode) var presentationMode
+    var onTaskSubmit: ((ChecklistItem) -> Void)?
+    
+    init(onTaskSubmit: @escaping (ChecklistItem) -> Void) {
+        self.onTaskSubmit = onTaskSubmit
+    }
     
     var body: some View {
         NavigationView {
@@ -14,21 +21,18 @@ struct EditTask: View {
                     .cornerRadius(5)
                     .font(.body)
                 Spacer()
-                submitEditButton()
+                submitAddTaskButton()
             }
             .padding()
-            .onAppear {
-                title = checklistItem.title
-                description = checklistItem.description
-            }
         }
-        .navigationTitle("Edit Task")
+        .navigationTitle("Add Task")
     }
+    
     @ViewBuilder
-    private func submitEditButton() -> some View {
+    private func submitAddTaskButton() -> some View{
         Button(action: {
             saveChanges()
-        }){
+        }) {
             Text("Submit")
                 .font(.headline)
                 .foregroundColor(.blue)
@@ -40,7 +44,9 @@ struct EditTask: View {
         .frame(maxWidth: .infinity)
     }
     private func saveChanges() {
-        checklistItem.title = title
-        checklistItem.description = description
+        let checklistItem = ChecklistItem(title: title, description: description)
+        onTaskSubmit?(checklistItem)
+        presentationMode.wrappedValue.dismiss()
     }
 }
+
