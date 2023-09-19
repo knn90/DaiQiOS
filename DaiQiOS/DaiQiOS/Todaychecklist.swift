@@ -9,8 +9,8 @@ struct TodayChecklist: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
+            VStack {
+                List {
                     ForEach(Array(checklistItems.enumerated()), id: \.element.id) { (index, item) in
                         NavigationLink(destination: EditTask(checklistItem: $checklistItems[index])) {
                             TaskCell(checklistItem: item)
@@ -19,17 +19,16 @@ struct TodayChecklist: View {
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
                     })
-                }
-                Section {
-                    addTaskButton()
-                }
+                    Section{
+                        addTaskButton()
+                    }
+                    
+}
+                .listStyle(InsetGroupedListStyle())
+                .navigationTitle("Today Checklist")
             }
-            
-            .listStyle(InsetGroupedListStyle())
-            .navigationTitle("Today Checklist")
         }
     }
-    
     @ViewBuilder
     private func addTaskButton() -> some View {
         HStack {
@@ -40,7 +39,7 @@ struct TodayChecklist: View {
                 }) {
                     Image(systemName: "plus")
                         .font(.system(size: 24))
-                        .frame(minWidth: 64 , maxWidth: .infinity, minHeight: 64)
+                        .frame(minWidth: 64, maxWidth: .infinity, minHeight: 64)
                         .background(Color.purple.opacity(0.3))
                         .foregroundColor(.white)
                         .clipShape(Circle())
@@ -54,8 +53,8 @@ struct TodayChecklist: View {
             return index
         }
         return 0
-        
     }
+    
     func delete(indexSet: IndexSet) {
         for index in indexSet {
             checklistItems.remove(at: index)

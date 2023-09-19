@@ -43,15 +43,15 @@ struct AddTask: View {
             } else {
                 saveChanges()
             }}) {
-            Text("Submit")
-                .font(.headline)
-                .foregroundColor(.blue)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(30)
-                .shadow(radius: 10)
-        }
-        .frame(maxWidth: .infinity)
+                Text("Submit")
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(30)
+                    .shadow(radius: 10)
+            }
+            .frame(maxWidth: .infinity)
     }
     private func saveChanges() {
         let checklistItem = ChecklistItem(title: title, description: description)

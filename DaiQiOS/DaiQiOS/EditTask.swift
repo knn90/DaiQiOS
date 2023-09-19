@@ -5,7 +5,7 @@ struct EditTask: View {
     @State private var title = ""
     @State private var description = ""
     @State private var showAlert = false
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -34,7 +34,7 @@ struct EditTask: View {
             )
         }
     }
-
+    
     @ViewBuilder
     private func submitEditButton() -> some View {
         Button(action: {
@@ -54,7 +54,7 @@ struct EditTask: View {
         }
         .frame(maxWidth: .infinity)
     }
-
+    
     private func saveChanges() {
         checklistItem.title = title
         checklistItem.description = description
