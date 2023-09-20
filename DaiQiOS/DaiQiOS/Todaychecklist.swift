@@ -6,7 +6,7 @@ struct TodayChecklist: View {
         ChecklistItem(title: "Task 2", description: "Description 2"),
         ChecklistItem(title: "Task 3", description: "Description 3")
     ]
-    
+    @State private var isAddTaskViewPresented = false
     var body: some View {
         NavigationView {
             VStack {
@@ -19,13 +19,12 @@ struct TodayChecklist: View {
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
                     })
-                    Section{
-                        addTaskButton()
-                    }
-                    
+             
 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Today Checklist")
+                Spacer()
+                addTaskButton()
             }
         }
     }
@@ -34,8 +33,11 @@ struct TodayChecklist: View {
         HStack {
             NavigationLink(destination: AddTask(onTaskSubmit: { checklistItem in
                 checklistItems.append(checklistItem)
-            })) {
+            }), isActive: $isAddTaskViewPresented) {
+                EmptyView()
+            }
                 Button(action: {
+                    isAddTaskViewPresented = true
                 }) {
                     Image(systemName: "plus")
                         .font(.system(size: 24))
@@ -44,7 +46,7 @@ struct TodayChecklist: View {
                         .foregroundColor(.white)
                         .clipShape(Circle())
                 }
-            }
+            
         }
     }
     
