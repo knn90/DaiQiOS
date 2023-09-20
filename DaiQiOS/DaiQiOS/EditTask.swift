@@ -4,7 +4,7 @@ struct EditTask: View {
     @Binding var checklistItem: ChecklistItem
     @State private var title = ""
     @State private var description = ""
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -16,17 +16,22 @@ struct EditTask: View {
                             submitButtonDisabled = false
                         }
                     }
+             
+                Divider().frame(maxHeight: 2)
+                    .overlay(.red)
                 if title.isEmpty {
                     Text("Title could not be empty")
                         .foregroundColor(.red)
                         .font(.caption)
                 }
+     
                 Divider()
                 TextEditor(text: $description)
                     .frame(height: 100)
                     .cornerRadius(5)
                     .font(.body)
-                    .border(Color.black.opacity(0.1), width: 5)
+                    
+                Divider()
                 Spacer()
                 submitEditButton()
             }
@@ -38,7 +43,7 @@ struct EditTask: View {
         }
         .navigationTitle("Edit Task")
     }
-
+    
     @ViewBuilder
     private func submitEditButton() -> some View {
         Button(action: {
@@ -55,8 +60,8 @@ struct EditTask: View {
         .frame(maxWidth: .infinity)
         .disabled(submitButtonDisabled)
     }
-
-    @State private var submitButtonDisabled = true 
+    
+    @State private var submitButtonDisabled = true
     private func saveChanges() {
         checklistItem.title = title
         checklistItem.description = description

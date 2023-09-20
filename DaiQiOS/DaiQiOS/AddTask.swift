@@ -21,6 +21,7 @@ struct AddTask: View {
                 .foregroundStyle(.purple.opacity(0.5))
                 .font(.title)
                 .background(.white)
+                
                 TextField("Title", text: $title)
                     .onChange(of: title) { newValue in
                         if newValue.isEmpty {
@@ -29,23 +30,28 @@ struct AddTask: View {
                             submitButtonDisabled = false
                         }
                     }
+                Divider().frame(maxHeight: 2)
+                    .overlay(.red)
                 if title.isEmpty {
                     Text("Title could not be empty")
                         .foregroundColor(.red)
                         .font(.caption)
+                        .multilineTextAlignment(.center)
                 }
                 Divider()
+                Text("Description:")
+                    .font(.caption)
                 TextEditor(text: $description)
                     .frame(height: 100)
                     .cornerRadius(5)
                     .font(.body)
-                    .border(Color.black.opacity(0.1), width: 5)
+                
+                Divider()
                 Spacer()
                 submitAddTaskButton()
             }
             .padding()
-        }
-        .navigationTitle("Add Task")
+        }.navigationTitle("Add Task")
     }
     
     @ViewBuilder
