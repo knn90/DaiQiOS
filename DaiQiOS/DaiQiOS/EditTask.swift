@@ -26,8 +26,8 @@ struct EditTask: View {
                 }
      
                 Divider()
-                TextEditor(text: $description)
-                    .frame(height: 100)
+                TextField("Description",text: $description, axis: .vertical)
+                    .lineLimit(1...5)
                     .cornerRadius(5)
                     .font(.body)
                     
