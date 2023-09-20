@@ -5,6 +5,7 @@ struct AddTask: View {
     @State private var title = ""
     @State private var description = ""
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     var onTaskSubmit: ((ChecklistItem) -> Void)?
     
     init(onTaskSubmit: @escaping (ChecklistItem) -> Void) {
@@ -14,6 +15,12 @@ struct AddTask: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
+                Button("cancel") {
+                    dismiss()
+                }
+                .foregroundStyle(.purple.opacity(0.5))
+                .font(.title)
+                .background(.white)
                 TextField("Title", text: $title)
                     .onChange(of: title) { newValue in
                         if newValue.isEmpty {
