@@ -6,7 +6,6 @@ struct AddTask: View {
     @State private var description = ""
     @Environment(\.presentationMode) var presentationMode
     var onTaskSubmit: ((ChecklistItem) -> Void)?
-    @State private var isTitleEmpty = false
     
     init(onTaskSubmit: @escaping (ChecklistItem) -> Void) {
         self.onTaskSubmit = onTaskSubmit
@@ -16,7 +15,14 @@ struct AddTask: View {
         NavigationView {
             VStack(alignment: .leading) {
                 TextField("Title", text: $title)
-                if isTitleEmpty {
+                    .onChange(of: title) { newValue in
+                        if newValue.isEmpty {
+                            submitButtonDisabled = true
+                        } else {
+                            submitButtonDisabled = false
+                        }
+                    }
+                if title.isEmpty {
                     Text("Title could not be empty")
                         .foregroundColor(.red)
                         .font(.caption)
@@ -38,22 +44,20 @@ struct AddTask: View {
     @ViewBuilder
     private func submitAddTaskButton() -> some View {
         Button(action: {
-            if title.isEmpty {
-                isTitleEmpty = true
-            } else {
-                isTitleEmpty = false
-                saveChanges()
-            } }) {
-                Text("Submit")
-                    .font(.headline)
-                    .foregroundColor(.purple)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(30)
-                    .shadow(radius: 10)
-            }
-            .frame(maxWidth: .infinity)
+            saveChanges()
+        }) {
+            Text("Submit")
+                .font(.headline)
+                .foregroundColor(.purple)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(30)
+                .shadow(radius: 10)
+        }
+        .frame(maxWidth: .infinity)
+        .disabled(submitButtonDisabled)
     }
+    @State private var submitButtonDisabled = true
     private func saveChanges() {
         let checklistItem = ChecklistItem(title: title, description: description)
         onTaskSubmit?(checklistItem)

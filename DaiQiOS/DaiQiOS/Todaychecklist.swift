@@ -6,7 +6,7 @@ struct TodayChecklist: View {
         ChecklistItem(title: "Task 2", description: "Description 2"),
         ChecklistItem(title: "Task 3", description: "Description 3")
     ]
-    @State private var isAddTaskViewPresented = false
+    @State private var showingSheet = false
     var body: some View {
         NavigationView {
             VStack {
@@ -19,8 +19,8 @@ struct TodayChecklist: View {
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
                     })
-             
-}
+                    
+                }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Today Checklist")
                 Spacer()
@@ -31,13 +31,9 @@ struct TodayChecklist: View {
     @ViewBuilder
     private func addTaskButton() -> some View {
         HStack {
-            NavigationLink(destination: AddTask(onTaskSubmit: { checklistItem in
-                checklistItems.append(checklistItem)
-            }), isActive: $isAddTaskViewPresented) {
-                EmptyView()
-            }
                 Button(action: {
-                    isAddTaskViewPresented = true
+                    showingSheet.toggle()
+                    
                 }) {
                     Image(systemName: "plus")
                         .font(.system(size: 24))
@@ -46,9 +42,14 @@ struct TodayChecklist: View {
                         .foregroundColor(.white)
                         .clipShape(Circle())
                 }
-            
+                .sheet(isPresented: $showingSheet) {
+                    AddTask{  checklistItem in
+                        checklistItems.append(checklistItem)
+                    }
+                }
+            }
         }
-    }
+    
     
     private func getIndex(for item: ChecklistItem) -> Int {
         if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
