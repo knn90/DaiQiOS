@@ -39,10 +39,8 @@ struct AddTask: View {
                         .multilineTextAlignment(.center)
                 }
                 Divider()
-                Text("Description:")
-                    .font(.caption)
-                TextEditor(text: $description)
-                    .frame(height: 100)
+                TextField("Description",text: $description, axis: .vertical)
+                    .lineLimit(1...5)
                     .cornerRadius(5)
                     .font(.body)
                 
