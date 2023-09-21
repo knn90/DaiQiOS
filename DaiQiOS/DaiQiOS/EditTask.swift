@@ -7,29 +7,30 @@ struct EditTask: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                TextField("Title", text: $title)
-                    .onChange(of: title) { newValue in
-                        if newValue.isEmpty {
-                            submitButtonDisabled = true
-                        } else {
-                            submitButtonDisabled = false
+            VStack(alignment: .center) {
+                VStack(alignment: .leading) {
+                    TextField("Title", text: $title)
+                        .onChange(of: title) { newValue in
+                            if newValue.isEmpty {
+                                submitButtonDisabled = true
+                            } else {
+                                submitButtonDisabled = false
+                            }
                         }
+                    Divider()
+                        .overlay(title.isEmpty ? .red : .gray)
+                    if title.isEmpty {
+                        Text("Title could not be empty")
+                            .foregroundColor(.red)
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
                     }
-                if title.isEmpty {
-                    Text("Title could not be empty")
-                        .foregroundColor(.red)
-                        .font(.caption)
-                       Divider().frame(maxHeight: 2)
-                           .overlay(.red)
                 }
-     
-                Divider()
                 TextField("Description",text: $description, axis: .vertical)
                     .lineLimit(1...5)
                     .cornerRadius(5)
                     .font(.body)
-                    
+                
                 Divider()
                 Spacer()
                 submitEditButton()
@@ -50,13 +51,11 @@ struct EditTask: View {
         }) {
             Text("Submit")
                 .font(.headline)
-                .foregroundColor(.purple)
                 .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(30)
-                .shadow(radius: 10)
         }
-        .frame(maxWidth: .infinity)
+        .tint(.purple.opacity(0.3))
+        .controlSize(.small)
+        .buttonStyle(.borderedProminent)
         .disabled(submitButtonDisabled)
     }
     
