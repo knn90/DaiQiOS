@@ -27,46 +27,46 @@ struct TodayChecklist: View {
                 addTaskButton()
             }
         }
+        .sheet(isPresented: $showingSheet, content: {
+                    AddTask { checklistItem in
+                        checklistItems.append(checklistItem)
+                        showingSheet.toggle()
+                    }
+                })
     }
     @ViewBuilder
     private func addTaskButton() -> some View {
         HStack {
-                Button(action: {
-                    showingSheet.toggle()
-                    
-                }) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 24))
-                        .frame(minWidth: 64, maxWidth: .infinity, minHeight: 64)
-                        .background(Color.purple.opacity(0.3))
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                }
-                .sheet(isPresented: $showingSheet) {
-                    AddTask{  checklistItem in
-                        checklistItems.append(checklistItem)
-                    }
-                }
+            Button(action: {
+                showingSheet.toggle()
+                
+            }) {
+                Image(systemName: "plus")
+                    .font(.system(size: 24))
+                    .frame(minWidth: 64, maxWidth: .infinity, minHeight: 64)
+                    .background(Color.purple.opacity(0.3))
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
             }
         }
-    
-    
-    private func getIndex(for item: ChecklistItem) -> Int {
-        if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
-            return index
-        }
-        return 0
     }
-    
-    func delete(indexSet: IndexSet) {
-        for index in indexSet {
-            checklistItems.remove(at: index)
-        }
+
+private func getIndex(for item: ChecklistItem) -> Int {
+    if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
+        return index
     }
-    
-    struct TodayChecklist_Previews: PreviewProvider {
-        static var previews: some View {
-            TodayChecklist()
-        }
+    return 0
+}
+
+func delete(indexSet: IndexSet) {
+    for index in indexSet {
+        checklistItems.remove(at: index)
     }
+}
+
+struct TodayChecklist_Previews: PreviewProvider {
+    static var previews: some View {
+        TodayChecklist()
+    }
+}
 }
