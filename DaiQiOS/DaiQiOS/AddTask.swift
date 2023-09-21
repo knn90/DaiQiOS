@@ -30,13 +30,14 @@ struct AddTask: View {
                             submitButtonDisabled = false
                         }
                     }
-                Divider().frame(maxHeight: 2)
-                    .overlay(.red)
                 if title.isEmpty {
                     Text("Title could not be empty")
                         .foregroundColor(.red)
                         .font(.caption)
                         .multilineTextAlignment(.center)
+                    Divider()
+                        .frame(height: 2)
+                        .overlay(.red)
                 }
                 Divider()
                 TextField("Description",text: $description, axis: .vertical)

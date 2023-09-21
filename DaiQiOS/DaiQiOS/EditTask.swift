@@ -16,13 +16,12 @@ struct EditTask: View {
                             submitButtonDisabled = false
                         }
                     }
-             
-                Divider().frame(maxHeight: 2)
-                    .overlay(.red)
                 if title.isEmpty {
                     Text("Title could not be empty")
                         .foregroundColor(.red)
                         .font(.caption)
+                       Divider().frame(maxHeight: 2)
+                           .overlay(.red)
                 }
      
                 Divider()
