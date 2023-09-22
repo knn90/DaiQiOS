@@ -18,9 +18,11 @@ struct TodayChecklist: View {
                     }
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
+                        
                     })
-                    
-                }
+                    .onMove(perform: { indices, newOffset in
+                        move(indices: indices, newOffset: newOffset)
+                    })}
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Today Checklist")
                 Spacer()
@@ -28,11 +30,11 @@ struct TodayChecklist: View {
             }
         }
         .sheet(isPresented: $showingSheet, content: {
-                    AddTask { checklistItem in
-                        checklistItems.append(checklistItem)
-                        showingSheet.toggle()
-                    }
-                })
+            AddTask { checklistItem in
+                checklistItems.append(checklistItem)
+                showingSheet.toggle()
+            }
+        })
     }
     @ViewBuilder
     private func addTaskButton() -> some View {
@@ -47,26 +49,27 @@ struct TodayChecklist: View {
                     .background(Color.purple.opacity(0.3))
                     .foregroundColor(.white)
                     .clipShape(Circle())
+                    .hoverEffect(.automatic)
             }
         }
     }
-
-private func getIndex(for item: ChecklistItem) -> Int {
-    if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
-        return index
+    private func getIndex(for item: ChecklistItem) -> Int {
+        if let index = checklistItems.firstIndex(where: { $0.id == item.id }) {
+            return index
+        }
+        return 0
     }
-    return 0
-}
-
-func delete(indexSet: IndexSet) {
-    for index in indexSet {
-        checklistItems.remove(at: index)
+    func delete(indexSet: IndexSet) {
+        for index in indexSet {
+            checklistItems.remove(at: index)
+        }
     }
-}
-
-struct TodayChecklist_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayChecklist()
+    private  func move(indices: IndexSet, newOffset: Int) {
+        checklistItems.move(fromOffsets: indices, toOffset: newOffset)
     }
-}
+    struct TodayChecklist_Previews: PreviewProvider {
+        static var previews: some View {
+            TodayChecklist()
+        }
+    }
 }

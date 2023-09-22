@@ -57,6 +57,7 @@ struct AddTask: View {
                     .transition(AnyTransition.opacity.animation(.linear(duration: 0.5)))
             }
         }
+        .padding()
     }
 
 func addDescription() -> some View {
@@ -67,6 +68,7 @@ func addDescription() -> some View {
             .font(.body)
         Divider()
     }
+    .padding()
 }
 @ViewBuilder
 private func submitAddTaskButton() -> some View {
