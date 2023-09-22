@@ -18,11 +18,14 @@ struct TodayChecklist: View {
                     }
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
-                        
+                           
                     })
                     .onMove(perform: { indices, newOffset in
                         move(indices: indices, newOffset: newOffset)
+                           
                     })}
+                .navigationBarItems(trailing: EditButton())
+                .accentColor(.purple)
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Today Checklist")
                 Spacer()
@@ -45,11 +48,11 @@ struct TodayChecklist: View {
             }) {
                 Image(systemName: "plus")
                     .font(.system(size: 24))
-                    .frame(minWidth: 64, maxWidth: .infinity, minHeight: 64)
+                    .frame(minWidth: 64, minHeight: 64)
                     .background(Color.purple.opacity(0.3))
                     .foregroundColor(.white)
                     .clipShape(Circle())
-                    .hoverEffect(.automatic)
+                    .padding()
             }
         }
     }
