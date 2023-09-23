@@ -5,7 +5,7 @@
   - The tasks should be reset every day so that the user can check it again.
 ## Milestone 2:
   - Authentication:
-    - With Google, Facebook, Apple, email or Guest
+    - With Google, Facebook, Apple, Email or Guest
   - Sync between different devices
    
   
