@@ -14,10 +14,10 @@ struct AddTask: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                addingTitle()
+                TitleArea()
                 Spacer()
                     .frame(height: 30)
-                addingDescription()
+                DescriptionArea()
                 Spacer()
                 submitAddTaskButton()
                     .padding()
@@ -37,7 +37,7 @@ struct AddTask: View {
             }
         }
     }
-    func addingTitle() -> some View {
+    func TitleArea() -> some View {
         VStack(alignment: .leading) {
             TextField("Title", text: $title)
                 .onChange(of: title) { newValue in
@@ -56,7 +56,7 @@ struct AddTask: View {
         .padding()
     }
     
-    func addingDescription() -> some View {
+    func DescriptionArea() -> some View {
         VStack {
             TextField("Description",text: $description, axis: .vertical)
                 .lineLimit(1...5)
