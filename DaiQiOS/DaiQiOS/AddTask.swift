@@ -80,11 +80,13 @@ struct AddTask: View {
         .buttonStyle(.borderedProminent)
         .disabled(submitButtonDisabled)
     }
+    
     @State private var submitButtonDisabled = true
     private func saveChanges() {
         let checklistItem = ChecklistItem(title: title, description: description)
         onTaskSubmit?(checklistItem)
         presentationMode.wrappedValue.dismiss()
+        // Save to database
     }
 }
 
