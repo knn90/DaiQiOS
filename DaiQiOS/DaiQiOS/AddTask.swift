@@ -13,36 +13,74 @@ struct AddTask: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                TextField("Title", text: $title)
-                Divider()
-                TextEditor(text: $description)
-                    .frame(height: 100)
-                    .cornerRadius(5)
-                    .font(.body)
+            VStack(alignment: .center) {
+                TitleArea()
+                Spacer()
+                    .frame(height: 30)
+                DescriptionArea()
                 Spacer()
                 submitAddTaskButton()
+                    .padding()
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("Add Task")
+                                .font(.title)
+                                .bold()
+                                .foregroundColor(.primary)
+                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancel") {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
             }
-            .padding()
         }
-        .navigationTitle("Add Task")
+    }
+    func TitleArea() -> some View {
+        VStack(alignment: .leading) {
+            TextField("Title", text: $title)
+                .onChange(of: title) { newValue in
+                    submitButtonDisabled = newValue.isEmpty
+                }
+            Divider()
+                .overlay(title.isEmpty ? .red : .gray)
+            if title.isEmpty {
+                Text("Title could not be empty")
+                    .foregroundColor(.red)
+                    .font(.caption)
+                    .multilineTextAlignment(.center)
+                    .transition(AnyTransition.opacity.animation(.linear(duration: 0.5)))
+            }
+        }
+        .padding()
     }
     
+    func DescriptionArea() -> some View {
+        VStack {
+            TextField("Description",text: $description, axis: .vertical)
+                .lineLimit(1...5)
+                .cornerRadius(5)
+                .font(.body)
+            Divider()
+        }
+        .padding()
+    }
     @ViewBuilder
-    private func submitAddTaskButton() -> some View{
+    private func submitAddTaskButton() -> some View {
         Button(action: {
             saveChanges()
         }) {
             Text("Submit")
                 .font(.headline)
-                .foregroundColor(.blue)
                 .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(30)
-                .shadow(radius: 10)
         }
-        .frame(maxWidth: .infinity)
+        .tint(.purple.opacity(0.3))
+        .controlSize(.small)
+        .buttonStyle(.borderedProminent)
+        .disabled(submitButtonDisabled)
     }
+    @State private var submitButtonDisabled = true
     private func saveChanges() {
         let checklistItem = ChecklistItem(title: title, description: description)
         onTaskSubmit?(checklistItem)
