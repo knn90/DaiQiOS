@@ -14,10 +14,10 @@ struct AddTask: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                addTitle()
+                addingTitle()
                 Spacer()
                     .frame(height: 30)
-                addDescription()
+                addingDescription()
                 Spacer()
                 submitAddTaskButton()
                     .padding()
@@ -37,15 +37,11 @@ struct AddTask: View {
             }
         }
     }
-    func addTitle() -> some View {
+    func addingTitle() -> some View {
         VStack(alignment: .leading) {
             TextField("Title", text: $title)
                 .onChange(of: title) { newValue in
-                    if newValue.isEmpty {
-                        submitButtonDisabled = true
-                    } else {
-                        submitButtonDisabled = false
-                    }
+                    submitButtonDisabled = newValue.isEmpty
                 }
             Divider()
                 .overlay(title.isEmpty ? .red : .gray)
@@ -59,36 +55,36 @@ struct AddTask: View {
         }
         .padding()
     }
-
-func addDescription() -> some View {
-    VStack {
-        TextField("Description",text: $description, axis: .vertical)
-            .lineLimit(1...5)
-            .cornerRadius(5)
-            .font(.body)
-        Divider()
+    
+    func addingDescription() -> some View {
+        VStack {
+            TextField("Description",text: $description, axis: .vertical)
+                .lineLimit(1...5)
+                .cornerRadius(5)
+                .font(.body)
+            Divider()
+        }
+        .padding()
     }
-    .padding()
-}
-@ViewBuilder
-private func submitAddTaskButton() -> some View {
-    Button(action: {
-        saveChanges()
-    }) {
-        Text("Submit")
-            .font(.headline)
-            .padding()
+    @ViewBuilder
+    private func submitAddTaskButton() -> some View {
+        Button(action: {
+            saveChanges()
+        }) {
+            Text("Submit")
+                .font(.headline)
+                .padding()
+        }
+        .tint(.purple.opacity(0.3))
+        .controlSize(.small)
+        .buttonStyle(.borderedProminent)
+        .disabled(submitButtonDisabled)
     }
-    .tint(.purple.opacity(0.3))
-    .controlSize(.small)
-    .buttonStyle(.borderedProminent)
-    .disabled(submitButtonDisabled)
-}
-@State private var submitButtonDisabled = true
-private func saveChanges() {
-    let checklistItem = ChecklistItem(title: title, description: description)
-    onTaskSubmit?(checklistItem)
-    presentationMode.wrappedValue.dismiss()
-}
+    @State private var submitButtonDisabled = true
+    private func saveChanges() {
+        let checklistItem = ChecklistItem(title: title, description: description)
+        onTaskSubmit?(checklistItem)
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 

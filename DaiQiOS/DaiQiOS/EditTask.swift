@@ -4,14 +4,15 @@ struct EditTask: View {
     @Binding var checklistItem: ChecklistItem
     @State private var title = ""
     @State private var description = ""
+    @State private var submitButtonDisabled = true
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                editTitle()
+                edittingTitle()
                 Spacer()
                     .frame(height: 30)
-                editDescription()
+                edittingDescription()
                 Spacer()
                 submitEditButton()
             }
@@ -24,15 +25,11 @@ struct EditTask: View {
         .navigationTitle("Edit Task")
     }
     
-    func editTitle() -> some View {
+    func edittingTitle() -> some View {
         VStack(alignment: .leading) {
             TextField("Title", text: $title)
                 .onChange(of: title) { newValue in
-                    if newValue.isEmpty {
-                        submitButtonDisabled = true
-                    } else {
-                        submitButtonDisabled = false
-                    }
+                    submitButtonDisabled = newValue.isEmpty
                 }
             Divider()
                 .overlay(title.isEmpty ? .red : .gray)
@@ -46,7 +43,7 @@ struct EditTask: View {
         }
     }
     
-    func editDescription () -> some View {
+    func edittingDescription () -> some View {
         VStack {
             TextField("Description",text: $description, axis: .vertical)
                 .lineLimit(1...5)
@@ -69,8 +66,6 @@ struct EditTask: View {
         .buttonStyle(.borderedProminent)
         .disabled(submitButtonDisabled)
     }
-    
-    @State private var submitButtonDisabled = true
     private func saveChanges() {
         checklistItem.title = title
         checklistItem.description = description

@@ -18,11 +18,11 @@ struct TodayChecklist: View {
                     }
                     .onDelete(perform: { indexSet in
                         delete(indexSet: indexSet)
-                           
+                        
                     })
                     .onMove(perform: { indices, newOffset in
                         move(indices: indices, newOffset: newOffset)
-                           
+                        
                     })}
                 .navigationBarItems(trailing: EditButton())
                 .accentColor(.purple)
@@ -31,8 +31,7 @@ struct TodayChecklist: View {
                 Spacer()
                 addTaskButton()
             }
-        }
-        .sheet(isPresented: $showingSheet, content: {
+        }   .sheet(isPresented: $showingSheet, content: {
             AddTask { checklistItem in
                 checklistItems.append(checklistItem)
                 showingSheet.toggle()
