@@ -2,8 +2,7 @@
 import SwiftUI
 
 struct AddTask: View {
-    @State private var title = ""
-    @State private var description = ""
+    @EnvironmentObject var addTaskViewModel: AddTaskViewModel
     @Environment(\.presentationMode) var presentationMode
     var onTaskSubmit: ((ChecklistItem) -> Void)?
     
@@ -39,13 +38,13 @@ struct AddTask: View {
     }
     func TitleArea() -> some View {
         VStack(alignment: .leading) {
-            TextField("Title", text: $title)
-                .onChange(of: title) { newValue in
-                    submitButtonDisabled = newValue.isEmpty
+            TextField("Title", text: $addTaskViewModel.title)
+                .onChange(of: addTaskViewModel.title) { newValue in
+                    addTaskViewModel.submitButtonDisabled = newValue.isEmpty
                 }
             Divider()
-                .overlay(title.isEmpty ? .red : .gray)
-            if title.isEmpty {
+                .overlay(addTaskViewModel.title.isEmpty ? .red : .gray)
+            if addTaskViewModel.title.isEmpty {
                 Text("Title could not be empty")
                     .foregroundColor(.red)
                     .font(.caption)
@@ -58,7 +57,7 @@ struct AddTask: View {
     
     func DescriptionArea() -> some View {
         VStack {
-            TextField("Description",text: $description, axis: .vertical)
+            TextField("Description",text: $addTaskViewModel.description, axis: .vertical)
                 .lineLimit(1...5)
                 .cornerRadius(5)
                 .font(.body)
@@ -69,8 +68,10 @@ struct AddTask: View {
     @ViewBuilder
     private func submitAddTaskButton() -> some View {
         Button(action: {
-            saveChanges()
-        }) {
+            addTaskViewModel.addItem()
+            presentationMode.wrappedValue.dismiss()}
+        
+        ) {
             Text("Submit")
                 .font(.headline)
                 .padding()
@@ -78,15 +79,7 @@ struct AddTask: View {
         .tint(.purple.opacity(0.3))
         .controlSize(.small)
         .buttonStyle(.borderedProminent)
-        .disabled(submitButtonDisabled)
-    }
-    
-    @State private var submitButtonDisabled = true
-    private func saveChanges() {
-        let checklistItem = ChecklistItem(title: title, description: description)
-        onTaskSubmit?(checklistItem)
-        presentationMode.wrappedValue.dismiss()
-        // Save to database
+        .disabled(addTaskViewModel.submitButtonDisabled)
     }
 }
 

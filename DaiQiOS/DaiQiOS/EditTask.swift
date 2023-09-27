@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EditTask: View {
+    @EnvironmentObject var editTaskViewModel: EditTaskViewModel
     @Binding var checklistItem: ChecklistItem
     @State private var title = ""
     @State private var description = ""

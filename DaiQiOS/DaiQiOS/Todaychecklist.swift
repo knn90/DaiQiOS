@@ -1,26 +1,21 @@
 import SwiftUI
 
 struct TodayChecklist: View {
-    @StateObject private var viewModel = TodayChecklist.ViewModel()
-    @State private var showingSheet = false
     
+    @EnvironmentObject var listViewModel: ListViewModel
+  
+    @State private var showingSheet = false
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(viewModel.items.indices, id: \.self) { (index: Int) in
-                        NavigationLink(destination: EditTask(checklistItem: $viewModel.items[index])) {
-                            TaskCell(checklistItem: viewModel.items[index])
+                    ForEach(Array(listViewModel.checklistItems.enumerated()), id: \.element.id) { (index, item) in
+                        NavigationLink(destination: EditTask(checklistItem: $listViewModel.checklistItems[index])) {
+                            TaskCell(checklistItem: item)
                         }
                     }
-                    .onDelete(perform: { indexSet in
-                        delete(indexSet: indexSet)
-                        
-                    })
-                    .onMove(perform: { indices, newOffset in
-                        move(indices: indices, newOffset: newOffset)
-                        
-                    })}
+                    .onDelete(perform: listViewModel.delete)
+                    .onMove(perform: listViewModel.move)}
                 .navigationBarItems(trailing: EditButton())
                 .accentColor(.purple)
                 .listStyle(InsetGroupedListStyle())
@@ -30,17 +25,16 @@ struct TodayChecklist: View {
             }
         }   .sheet(isPresented: $showingSheet, content: {
             AddTask { checklistItem in
-                viewModel.append(checklistItem)
+                listViewModel.checklistItems.append(checklistItem)
                 showingSheet.toggle()
             }
         })
-
     }
     @ViewBuilder
     private func addTaskButton() -> some View {
         HStack {
             Button(action: {
-              showingSheet.toggle()
+                showingSheet.toggle()
                 
             }) {
                 Image(systemName: "plus")
@@ -53,18 +47,19 @@ struct TodayChecklist: View {
             }
         }
     }
-
-    private func delete(indexSet: IndexSet) {
-        viewModel.removeItem(at: indexSet.first ?? 0)
+    private func getIndex(for item: ChecklistItem) -> Int {
+        if let index = listViewModel.checklistItems.firstIndex(where: { $0.id == item.id }) {
+            return index
+        }
+        return 0
     }
-
-    private func move(indices: IndexSet, newOffset: Int) {
-        viewModel.moveItem(fromOffsets: indices, toOffset: newOffset)
-    }
-
+ 
     struct TodayChecklist_Previews: PreviewProvider {
         static var previews: some View {
-            TodayChecklist()
+            NavigationView {
+                TodayChecklist()
+            }
+            .environmentObject(ListViewModel())
         }
     }
 }
