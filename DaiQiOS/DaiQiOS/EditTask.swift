@@ -53,7 +53,7 @@ struct EditTask: View {
     @ViewBuilder
     private func submitEditButton() -> some View {
         Button(action: {
-            editTaskViewModel.saveChanges(checklistItem: &checklistItem)
+            editTaskViewModel.saveChanges(checklistItem: &checklistItem )
         }) {
             Text("Submit")
                 .font(.headline)
@@ -65,9 +65,5 @@ struct EditTask: View {
         .disabled(editTaskViewModel.submitButtonDisabled)
     }
 }
-struct EditTask_Previews: PreviewProvider {
-    static var previews: some View {
-        EditTask(checklistItem: .constant(ChecklistItem(title: "Task", description: "Description")))
-            .environmentObject(EditTaskViewModel())
-    }
-}
+
+
