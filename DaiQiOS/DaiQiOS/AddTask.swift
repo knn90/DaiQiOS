@@ -3,6 +3,7 @@ import SwiftUI
 
 struct AddTask: View {
     @EnvironmentObject var addTaskViewModel: AddTaskViewModel
+    @EnvironmentObject var listViewModel: ListViewModel
     @Environment(\.presentationMode) var presentationMode
     var onTaskSubmit: ((ChecklistItem) -> Void)?
     
@@ -65,21 +66,22 @@ struct AddTask: View {
         }
         .padding()
     }
+    
     @ViewBuilder
     private func submitAddTaskButton() -> some View {
         Button(action: {
-            addTaskViewModel.addItem()
-            presentationMode.wrappedValue.dismiss()}
-        
-        ) {
-            Text("Submit")
-                .font(.headline)
-                .padding()
+            var checklist = ChecklistItem(title: "abc", description: "def")
+            onTaskSubmit?(checklist)
         }
-        .tint(.purple.opacity(0.3))
-        .controlSize(.small)
-        .buttonStyle(.borderedProminent)
-        .disabled(addTaskViewModel.submitButtonDisabled)
-    }
-}
-
+            ) {
+                Text("Submit")
+                    .font(.headline)
+                    .padding()
+            }
+            .tint(.purple.opacity(0.3))
+            .controlSize(.small)
+            .buttonStyle(.borderedProminent)
+            .disabled(addTaskViewModel.submitButtonDisabled)
+        }
+               }
+               

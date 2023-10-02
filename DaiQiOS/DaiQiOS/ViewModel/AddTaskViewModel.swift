@@ -11,9 +11,9 @@ class AddTaskViewModel: ObservableObject {
     @Published var submitButtonDisabled = true
     @Published var title = ""
     @Published var description = ""
-    @Published var checklistItems: [ChecklistItem] = []
+    @Published var onTaskSubmit: [ChecklistItem] = []
     func addItem() {
         let newItem = ChecklistItem(title: title, description: description)
-        checklistItems.append(newItem)
+        onTaskSubmit.append(newItem)
     }
 }
