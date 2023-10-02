@@ -40,8 +40,6 @@ struct DaiQiOSApp: App {
                     } else {
                         self.resetAppState()
                     }
-                } else {
-                    self.resetAppState()
                 }
             }
         }
