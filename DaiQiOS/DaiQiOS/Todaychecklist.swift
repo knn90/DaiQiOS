@@ -14,16 +14,17 @@ struct TodayChecklist: View {
                             TaskCell(checklistItem: item)
                         }
                     }
-                    .onDelete(perform: listViewModel.delete)
-                    .onMove(perform: listViewModel.move)}
+                .onDelete(perform: listViewModel.delete)
+                .onMove(perform: listViewModel.move)}
                 .navigationBarItems(trailing: EditButton())
                 .accentColor(.purple)
                 .listStyle(InsetGroupedListStyle())
-                .navigationTitle("Today Checklist")
                 Spacer()
                 addTaskButton()
             }
-        }   .sheet(isPresented: $showingSheet, content: {
+        }
+        .navigationTitle("Today Checklist")
+        .sheet(isPresented: $showingSheet, content: {
             AddTask { checklistItem in
                 listViewModel.checklistItems.append(checklistItem)
                 showingSheet.toggle()
