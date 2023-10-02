@@ -3,9 +3,6 @@ import SwiftUI
 struct EditTask: View {
     @EnvironmentObject var editTaskViewModel: EditTaskViewModel
     @Binding var checklistItem: ChecklistItem
-    @State private var title = ""
-    @State private var description = ""
-    @State private var submitButtonDisabled = true
     
     var body: some View {
         NavigationView {
@@ -19,8 +16,8 @@ struct EditTask: View {
             }
             .padding()
             .onAppear {
-                title = checklistItem.title
-                description = checklistItem.description
+                editTaskViewModel.title = checklistItem.title
+                editTaskViewModel.description = checklistItem.description
             }
         }
         .navigationTitle("Edit Task")
@@ -28,13 +25,13 @@ struct EditTask: View {
     
     func TitleArea() -> some View {
         VStack(alignment: .leading) {
-            TextField("Title", text: $title)
-                .onChange(of: title) { newValue in
-                    submitButtonDisabled = newValue.isEmpty
+            TextField("Title", text: $editTaskViewModel.title)
+                .onChange(of: editTaskViewModel.title) { newValue in
+                    editTaskViewModel.submitButtonDisabled = newValue.isEmpty
                 }
             Divider()
-                .overlay(title.isEmpty ? .red : .gray)
-            if title.isEmpty {
+                .overlay(editTaskViewModel.title.isEmpty ? .red : .gray)
+            if editTaskViewModel.title.isEmpty {
                 Text("Title could not be empty")
                     .foregroundColor(.red)
                     .font(.caption)
@@ -46,7 +43,7 @@ struct EditTask: View {
     
     func DescriptionArea () -> some View {
         VStack {
-            TextField("Description",text: $description, axis: .vertical)
+            TextField("Description",text: $editTaskViewModel.description, axis: .vertical)
                 .lineLimit(1...5)
                 .cornerRadius(5)
                 .font(.body)
@@ -56,7 +53,7 @@ struct EditTask: View {
     @ViewBuilder
     private func submitEditButton() -> some View {
         Button(action: {
-            saveChanges()
+            editTaskViewModel.saveChanges(checklistItem: &checklistItem)
         }) {
             Text("Submit")
                 .font(.headline)
@@ -65,10 +62,12 @@ struct EditTask: View {
         .tint(.purple.opacity(0.3))
         .controlSize(.small)
         .buttonStyle(.borderedProminent)
-        .disabled(submitButtonDisabled)
+        .disabled(editTaskViewModel.submitButtonDisabled)
     }
-    private func saveChanges() {
-        checklistItem.title = title
-        checklistItem.description = description
+}
+struct EditTask_Previews: PreviewProvider {
+    static var previews: some View {
+        EditTask(checklistItem: .constant(ChecklistItem(title: "Task", description: "Description")))
+            .environmentObject(EditTaskViewModel())
     }
 }

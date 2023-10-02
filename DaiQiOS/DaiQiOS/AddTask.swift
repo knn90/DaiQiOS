@@ -70,7 +70,7 @@ struct AddTask: View {
     @ViewBuilder
     private func submitAddTaskButton() -> some View {
         Button(action: {
-            var checklist = ChecklistItem(title: "abc", description: "def")
+            let checklist = ChecklistItem(title: "", description: "")
             onTaskSubmit?(checklist)
         }
             ) {

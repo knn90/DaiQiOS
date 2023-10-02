@@ -8,8 +8,12 @@
 import Foundation
 
 class EditTaskViewModel: ObservableObject {
-    @Published private var title = ""
-    @Published private var description = ""
-    @Published private var submitButtonDisabled = true
-
+    @Published  var title = ""
+    @Published  var description = ""
+    @Published  var submitButtonDisabled = true
+    
+    func saveChanges(checklistItem: inout ChecklistItem) {
+            checklistItem.title = title
+            checklistItem.description = description
+        }
 }
