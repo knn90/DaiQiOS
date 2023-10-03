@@ -1,19 +1,23 @@
 import Foundation
 
 class ListViewModel: ObservableObject {
-    @Published var checklistItems: [ChecklistItem] = []
+    @Published var checklistItems: [ChecklistItem] = [] {
+        didSet {
+            saveItems()
+        }
+    }
+    
+    let itemsKey : String = "items_list"
     init() {
         getItems()
     }
     
-    func getItems() {
-        let newItems =  [
-            ChecklistItem(title: "Task 1", description: "Description 1"),
-            ChecklistItem(title: "Task 2", description: "Description 2"),
-            ChecklistItem(title: "Task 3", description: "Description 3"),
-            ChecklistItem(title: "Task 4", description: "Description 4")
-        ]
-        checklistItems.append(contentsOf: newItems)
+    func getItems() { 
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ChecklistItem].self, from: data)
+        else { return }
+        self.checklistItems = savedItems
     }
     func delete(indexSet: IndexSet) {
         for index in indexSet {
@@ -23,5 +27,9 @@ class ListViewModel: ObservableObject {
       func move(indices: IndexSet, newOffset: Int) {
         checklistItems.move(fromOffsets: indices, toOffset: newOffset)
     }
-   
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(checklistItems) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
+    }
 }
