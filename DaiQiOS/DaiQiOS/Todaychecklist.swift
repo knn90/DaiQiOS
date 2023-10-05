@@ -22,9 +22,6 @@ struct TodayChecklist: View {
                 addTaskButton()
             }
         }
-        //        .onAppear {
-        //            listViewModel.resetIfNewDay()
-        //        }
         .navigationTitle("Today Checklist")
         .sheet(isPresented: $showingSheet, content: {
             AddTask { checklistItem in
