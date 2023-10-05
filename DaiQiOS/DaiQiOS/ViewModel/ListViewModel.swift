@@ -1,34 +1,66 @@
-//
-//  ListViewModel.swift
-//  DaiQiOS
-//
-//  Created by Đinh Trần Việt Anh on 27/09/2023.
-//
-
 import Foundation
 
 class ListViewModel: ObservableObject {
-    @Published var checklistItems: [ChecklistItem] = []
+    @Published var checklistItems: [ChecklistItem] = [] {
+        didSet {
+            saveItems()
+        }
+    }
+    let lastReset: String = "lastResetDate"
+    let itemsKey : String = "items_list"
     init() {
         getItems()
+        resetIfNewDay()
     }
-    
+    func getDay() {
+        guard
+            let data = UserDefaults.standard.data(forKey: lastReset),
+            let savedDay = try? JSONDecoder().decode([ChecklistItem].self, from: data)
+        else { return }
+        self.checklistItems = savedDay
+    }
     func getItems() {
-        let newItems =  [
-            ChecklistItem(title: "Task 1", description: "Description 1"),
-            ChecklistItem(title: "Task 2", description: "Description 2"),
-            ChecklistItem(title: "Task 3", description: "Description 3"),
-            ChecklistItem(title: "Task 4", description: "Description 4")
-        ]
-        checklistItems.append(contentsOf: newItems)
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ChecklistItem].self, from: data)
+        else { return }
+        self.checklistItems = savedItems
     }
     func delete(indexSet: IndexSet) {
         for index in indexSet {
             checklistItems.remove(at: index)
         }
     }
-      func move(indices: IndexSet, newOffset: Int) {
+    func move(indices: IndexSet, newOffset: Int) {
         checklistItems.move(fromOffsets: indices, toOffset: newOffset)
     }
-   
-}
+    func saveDay() {
+        if let encodedData = try? JSONEncoder().encode(checklistItems) {
+            UserDefaults.standard.set(encodedData, forKey: lastReset)
+        }
+    }
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(checklistItems) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
+    }
+    func resetIfNewDay() {
+            let currentDate = Date()
+            if let lastResetDate = UserDefaults.standard.value(forKey: lastReset) as? Date {
+                let calendar = Calendar.current
+                let lastResetDateComponents = calendar.dateComponents([.year, .month, .day], from: lastResetDate)
+                let currentDateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+
+                if lastResetDateComponents.year != currentDateComponents.year ||
+                   lastResetDateComponents.month != currentDateComponents.month ||
+                   lastResetDateComponents.day != currentDateComponents.day {
+
+                    UserDefaults.standard.set(currentDate, forKey: lastReset)
+                    checklistItems.removeAll()
+                }
+            } else {
+                UserDefaults.standard.set(currentDate, forKey: lastReset)
+            }
+        }
+    }
+

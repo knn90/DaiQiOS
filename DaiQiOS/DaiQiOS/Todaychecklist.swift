@@ -3,7 +3,7 @@ import SwiftUI
 struct TodayChecklist: View {
     
     @EnvironmentObject var listViewModel: ListViewModel
-  
+    
     @State private var showingSheet = false
     var body: some View {
         NavigationView {
@@ -14,12 +14,11 @@ struct TodayChecklist: View {
                             TaskCell(checklistItem: item)
                         }
                     }
-                .onDelete(perform: listViewModel.delete)
-                .onMove(perform: listViewModel.move)}
+                    .onDelete(perform: listViewModel.delete)
+                    .onMove(perform: listViewModel.move)}
                 .navigationBarItems(trailing: EditButton())
                 .accentColor(.purple)
                 .listStyle(InsetGroupedListStyle())
-                Spacer()
                 addTaskButton()
             }
         }
@@ -48,13 +47,10 @@ struct TodayChecklist: View {
             }
         }
     }
-    private func getIndex(for item: ChecklistItem) -> Int {
-        if let index = listViewModel.checklistItems.firstIndex(where: { $0.id == item.id }) {
-            return index
-        }
-        return 0
+    private func getIndex(for item: ChecklistItem) -> Int? {
+        return listViewModel.checklistItems.firstIndex { $0.id == item.id }
     }
- 
+
     struct TodayChecklist_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
