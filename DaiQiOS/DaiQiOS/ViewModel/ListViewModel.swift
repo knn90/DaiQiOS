@@ -34,33 +34,21 @@ class ListViewModel: ObservableObject {
     func move(indices: IndexSet, newOffset: Int) {
         checklistItems.move(fromOffsets: indices, toOffset: newOffset)
     }
-    func saveDay() {
-        if let encodedData = try? JSONEncoder().encode(checklistItems) {
-            UserDefaults.standard.set(encodedData, forKey: lastReset)
-        }
-    }
     func saveItems() {
         if let encodedData = try? JSONEncoder().encode(checklistItems) {
             UserDefaults.standard.set(encodedData, forKey: itemsKey)
         }
     }
     func resetIfNewDay() {
-            let currentDate = Date()
-            if let lastResetDate = UserDefaults.standard.value(forKey: lastReset) as? Date {
-                let calendar = Calendar.current
-                let lastResetDateComponents = calendar.dateComponents([.year, .month, .day], from: lastResetDate)
-                let currentDateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-
-                if lastResetDateComponents.year != currentDateComponents.year ||
-                   lastResetDateComponents.month != currentDateComponents.month ||
-                   lastResetDateComponents.day != currentDateComponents.day {
-
-                    UserDefaults.standard.set(currentDate, forKey: lastReset)
-                    checklistItems.removeAll()
-                }
-            } else {
+        let currentDate = Date()
+        if let lastResetDate = UserDefaults.standard.value(forKey: lastReset) as? Date {
+            if !Calendar.current.isDate(lastResetDate, inSameDayAs: currentDate) {
                 UserDefaults.standard.set(currentDate, forKey: lastReset)
+                checklistItems.removeAll()
             }
+        } else {
+            UserDefaults.standard.set(currentDate, forKey: lastReset)
         }
+    }
     }
 
