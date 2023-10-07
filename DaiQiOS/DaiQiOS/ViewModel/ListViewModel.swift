@@ -44,7 +44,10 @@ class ListViewModel: ObservableObject {
         if let lastResetDate = UserDefaults.standard.value(forKey: lastReset) as? Date {
             if !Calendar.current.isDate(lastResetDate, inSameDayAs: currentDate) {
                 UserDefaults.standard.set(currentDate, forKey: lastReset)
-                checklistItems.removeAll()
+                for index in 0..<checklistItems.count {
+                                checklistItems[index].isChecked = false
+                            }
+                            saveItems()
             }
         } else {
             UserDefaults.standard.set(currentDate, forKey: lastReset)
