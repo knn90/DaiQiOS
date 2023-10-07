@@ -6,7 +6,7 @@ class ListViewModel: ObservableObject {
             saveItems()
         }
     }
-    let lastReset: String = "lastResetDate"
+    let lastUpdatedKey: String = "lastUpdatedDate"
     let itemsKey : String = "items_list"
     init() {
         getItems()
@@ -14,7 +14,7 @@ class ListViewModel: ObservableObject {
     }
     func getDay() {
         guard
-            let data = UserDefaults.standard.data(forKey: lastReset),
+            let data = UserDefaults.standard.data(forKey: lastUpdatedKey),
             let savedDay = try? JSONDecoder().decode([ChecklistItem].self, from: data)
         else { return }
         self.checklistItems = savedDay
@@ -41,17 +41,19 @@ class ListViewModel: ObservableObject {
     }
     func resetIfNewDay() {
         let currentDate = Date()
-        if let lastResetDate = UserDefaults.standard.value(forKey: lastReset) as? Date {
-            if !Calendar.current.isDate(lastResetDate, inSameDayAs: currentDate) {
-                UserDefaults.standard.set(currentDate, forKey: lastReset)
-                for index in 0..<checklistItems.count {
-                                checklistItems[index].isChecked = false
-                            }
-                            saveItems()
+        if let lastUpdatedDate = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date {
+            if !Calendar.current.isDate(lastUpdatedDate, inSameDayAs: currentDate) {
+                UserDefaults.standard.set(currentDate, forKey: lastUpdatedKey)
+                resetItemCheckmarks()
+                saveItems()
             }
         } else {
-            UserDefaults.standard.set(currentDate, forKey: lastReset)
+            UserDefaults.standard.set(currentDate, forKey: lastUpdatedKey)
         }
     }
+    func resetItemCheckmarks() {
+        for index in 0..<checklistItems.count {
+            checklistItems[index].isChecked = false
+        }
     }
-
+}
