@@ -26,12 +26,12 @@ struct EditTask: View {
     func TitleArea() -> some View {
         VStack(alignment: .leading) {
             TextField("Title", text: $editTaskViewModel.title)
-                .onChange(of: editTaskViewModel.title) { newValue in
+                .onChange(of: checklistItem.title) { newValue in
                     editTaskViewModel.submitButtonDisabled = newValue.isEmpty
                 }
             Divider()
                 .overlay(editTaskViewModel.title.isEmpty ? .red : .gray)
-            if editTaskViewModel.title.isEmpty {
+            if checklistItem.title.isEmpty {
                 Text("Title could not be empty")
                     .foregroundColor(.red)
                     .font(.caption)
@@ -65,5 +65,4 @@ struct EditTask: View {
         .disabled(editTaskViewModel.submitButtonDisabled)
     }
 }
-
 

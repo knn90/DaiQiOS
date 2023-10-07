@@ -11,11 +11,13 @@ struct DaiQiOSApp: App {
             NavigationView {
                 
                 TodayChecklist()
-                    .environmentObject(listViewModel)
-                    .environmentObject(addTaskViewModel)
-                    .environmentObject(editTaskViewModel)
-                
+                    
             }
+            .environmentObject(listViewModel)
+            .environmentObject(addTaskViewModel)
+            .environmentObject(editTaskViewModel)
+            
         }
+        
     }
 }
