@@ -18,6 +18,9 @@
 		6E4209E52AD11B890047DFFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E4209E42AD11B890047DFFE /* GoogleService-Info.plist */; };
 		6E4209E82AD1393F0047DFFE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4209E72AD1393F0047DFFE /* FirebaseAnalytics */; };
 		6E4209EA2AD1393F0047DFFE /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4209E92AD1393F0047DFFE /* FirebaseAnalyticsSwift */; };
+		6E4209ED2AD13F300047DFFE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4209EC2AD13F300047DFFE /* FirebaseAuth */; };
+		6E4209F02AD13FD30047DFFE /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4209EF2AD13FD30047DFFE /* AuthenticationView.swift */; };
+		6E4209F22AD142BE0047DFFE /* SigninEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4209F12AD142BE0047DFFE /* SigninEmailView.swift */; };
 		6ED261052AB95AB100F711A7 /* AddTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED261042AB95AB100F711A7 /* AddTask.swift */; };
 		6ED4A3862AAEC5D20015644D /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4A3852AAEC5D20015644D /* TaskCell.swift */; };
 		6ED4A3882AAEC68A0015644D /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4A3872AAEC68A0015644D /* CheckListItem.swift */; };
@@ -45,6 +48,8 @@
 		6E3A52AD2AC4269400B70BD0 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		6E3A52B22AC42ABF00B70BD0 /* EditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewModel.swift; sourceTree = "<group>"; };
 		6E4209E42AD11B890047DFFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6E4209EF2AD13FD30047DFFE /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		6E4209F12AD142BE0047DFFE /* SigninEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninEmailView.swift; sourceTree = "<group>"; };
 		6ED261042AB95AB100F711A7 /* AddTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTask.swift; sourceTree = "<group>"; };
 		6ED4A3852AAEC5D20015644D /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		6ED4A3872AAEC68A0015644D /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
@@ -58,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E4209EA2AD1393F0047DFFE /* FirebaseAnalyticsSwift in Frameworks */,
+				6E4209ED2AD13F300047DFFE /* FirebaseAuth in Frameworks */,
 				6E4209E82AD1393F0047DFFE /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +84,7 @@
 				6AF080EA2AAACC00007810B8 /* DaiQiOS */,
 				6AF080FB2AAACC02007810B8 /* DaiQiOSTests */,
 				6AF080E92AAACC00007810B8 /* Products */,
+				6E4209EB2AD13F300047DFFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +100,7 @@
 		6AF080EA2AAACC00007810B8 /* DaiQiOS */ = {
 			isa = PBXGroup;
 			children = (
+				6E4209EE2AD13FA80047DFFE /* Authentication */,
 				6E4209E42AD11B890047DFFE /* GoogleService-Info.plist */,
 				6ED4A3892AAECAB80015644D /* EditTask.swift */,
 				6ED261042AB95AB100F711A7 /* AddTask.swift */,
@@ -133,6 +141,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6E4209EB2AD13F300047DFFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E4209EE2AD13FA80047DFFE /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6E4209EF2AD13FD30047DFFE /* AuthenticationView.swift */,
+				6E4209F12AD142BE0047DFFE /* SigninEmailView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +176,7 @@
 			packageProductDependencies = (
 				6E4209E72AD1393F0047DFFE /* FirebaseAnalytics */,
 				6E4209E92AD1393F0047DFFE /* FirebaseAnalyticsSwift */,
+				6E4209EC2AD13F300047DFFE /* FirebaseAuth */,
 			);
 			productName = DaiQiOS;
 			productReference = 6AF080E82AAACC00007810B8 /* DaiQiOS.app */;
@@ -245,7 +270,9 @@
 				6E3A52AE2AC4269400B70BD0 /* AddTaskViewModel.swift in Sources */,
 				6AF080EC2AAACC00007810B8 /* DaiQiOSApp.swift in Sources */,
 				6E3A52AC2AC4135400B70BD0 /* ListViewModel.swift in Sources */,
+				6E4209F02AD13FD30047DFFE /* AuthenticationView.swift in Sources */,
 				6E3A52B32AC42ABF00B70BD0 /* EditTaskViewModel.swift in Sources */,
+				6E4209F22AD142BE0047DFFE /* SigninEmailView.swift in Sources */,
 				6ED4A3882AAEC68A0015644D /* CheckListItem.swift in Sources */,
 				6ED4A3862AAEC5D20015644D /* TaskCell.swift in Sources */,
 				6ED261052AB95AB100F711A7 /* AddTask.swift in Sources */,
@@ -537,6 +564,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E4209E62AD1393F0047DFFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		6E4209EC2AD13F300047DFFE /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E4209E62AD1393F0047DFFE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
