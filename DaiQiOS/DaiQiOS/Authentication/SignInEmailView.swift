@@ -12,25 +12,25 @@ final class SignInEmailViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     
-    func signIn() {
+    func signUp() async throws {
         guard !email.isEmpty, !password.isEmpty else {
-        print("No email or password found")
-        return
-    }
-        Task {
-            do {
-                let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                print("Success")
-                print(returnedUserData)
-            } catch {
-                print("error: \(error)")
-            }
+            print("No email or password found")
+            return
         }
+       try await AuthenticationManager.shared.createUser(email: email, password: password)
+    }
+    func signIp() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("No email or password found")
+            return
+        }
+       try await AuthenticationManager.shared.signInUser(email: email, password: password)
     }
 }
 struct SignInEmailView: View {
     
     @StateObject private var signInEmailViewModel = SignInEmailViewModel()
+    @Binding var showSignInView: Bool
     
     var body: some View {
         VStack {
@@ -44,7 +44,23 @@ struct SignInEmailView: View {
                 .cornerRadius(10)
             
             Button {
-                signInEmailViewModel.signIn()
+                Task {
+                    do {
+                        try await  signInEmailViewModel.signUp()
+                        showSignInView = false
+                        return
+                    } catch {
+                       print(error)
+                    }
+                    
+                    do {
+                        try await  signInEmailViewModel.signIp()
+                        showSignInView = false
+                        return
+                    } catch {
+                       print(error)
+                    }
+                }
             } label: {
                 Text("Sign in")
                     .font(.headline)
@@ -64,7 +80,7 @@ struct SignInEmailView: View {
 struct SignInEmailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SignInEmailView()
+            SignInEmailView(showSignInView: .constant(false))
         }
     }
 }
