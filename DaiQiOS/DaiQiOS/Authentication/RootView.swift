@@ -13,7 +13,7 @@ struct RootView: View {
         
         ZStack {
             NavigationStack {
-                Text("setting")
+                SettingView(showSignInView: $showSignInView)
             }
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
