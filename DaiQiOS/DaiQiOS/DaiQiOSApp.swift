@@ -11,11 +11,8 @@ struct DaiQiOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                AuthenticationView()
-//                TodayChecklist()
-                
-            }
+           RootView()
+            //                TodayChecklist()
 //            .environmentObject(listViewModel)
 //            .environmentObject(addTaskViewModel)
 //            .environmentObject(editTaskViewModel)
