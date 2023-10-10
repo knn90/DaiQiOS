@@ -12,14 +12,14 @@ struct DaiQiOSApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                
-                TodayChecklist()
+                AuthenticationView()
+//                TodayChecklist()
                 
             }
-            .environmentObject(listViewModel)
-            .environmentObject(addTaskViewModel)
-            .environmentObject(editTaskViewModel)
-            
+//            .environmentObject(listViewModel)
+//            .environmentObject(addTaskViewModel)
+//            .environmentObject(editTaskViewModel)
+//
         }
         
     }

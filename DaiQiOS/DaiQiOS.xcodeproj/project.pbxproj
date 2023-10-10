@@ -24,6 +24,7 @@
 		6ED261052AB95AB100F711A7 /* AddTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED261042AB95AB100F711A7 /* AddTask.swift */; };
 		6ED4A3862AAEC5D20015644D /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4A3852AAEC5D20015644D /* TaskCell.swift */; };
 		6ED4A3882AAEC68A0015644D /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED4A3872AAEC68A0015644D /* CheckListItem.swift */; };
+		6EEBA7152ACFF78A003FE5F0 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEBA7142ACFF78A003FE5F0 /* AuthenticationManager.swift */; };
 		6EF298942AAAD5FD008EFFAB /* Todaychecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF298932AAAD5FD008EFFAB /* Todaychecklist.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		6ED4A3852AAEC5D20015644D /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		6ED4A3872AAEC68A0015644D /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 		6ED4A3892AAECAB80015644D /* EditTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTask.swift; sourceTree = "<group>"; };
+		6EEBA7142ACFF78A003FE5F0 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		6EF298932AAAD5FD008EFFAB /* Todaychecklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todaychecklist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +155,7 @@
 			children = (
 				6E4209EF2AD13FD30047DFFE /* AuthenticationView.swift */,
 				6E4209F12AD142BE0047DFFE /* SignInEmailView.swift */,
+				6EEBA7142ACFF78A003FE5F0 /* AuthenticationManager.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				6E4209F22AD142BE0047DFFE /* SignInEmailView.swift in Sources */,
 				6ED4A3882AAEC68A0015644D /* CheckListItem.swift in Sources */,
 				6ED4A3862AAEC5D20015644D /* TaskCell.swift in Sources */,
+				6EEBA7152ACFF78A003FE5F0 /* AuthenticationManager.swift in Sources */,
 				6ED261052AB95AB100F711A7 /* AddTask.swift in Sources */,
 				6E4209E32AD0FCE40047DFFE /* EditTask.swift in Sources */,
 			);
