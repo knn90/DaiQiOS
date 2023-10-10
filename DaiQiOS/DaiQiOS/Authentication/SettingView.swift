@@ -20,6 +20,15 @@ final class SettingsViewModel: ObservableObject {
         }
         try await AuthenticationManager.shared.resetPassword(email: email)
     }
+    
+    func updateEmail() async throws {
+        let email = "asd@gmail.com"
+        try await AuthenticationManager.shared.updateEmail(email: email)
+    }
+    func updatePassword() async throws {
+        let password = "asd123"
+        try await AuthenticationManager.shared.updatePassword(password: password)
+    }
 }
 
 struct SettingView: View {
@@ -38,7 +47,22 @@ struct SettingView: View {
                     }
                 }
             }
-            
+            changeSection
+        }
+        .navigationTitle("Settings")
+    }
+}
+
+struct SettingView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            SettingView(showSignInView: .constant(false))
+        }
+    }
+}
+extension SettingView {
+    private var changeSection: some View {
+        Section(header: Text("Changes")) {
             Button("reset password") {
                 Task {
                     do {
@@ -49,15 +73,28 @@ struct SettingView: View {
                     }
                 }
             }
-        }
-        .navigationTitle("Settings")
-    }
-}
-
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            SettingView(showSignInView: .constant(false))
+            
+            Button("update password") {
+                Task {
+                    do {
+                        try await settingsViewModel.updatePassword()
+                        print("PASSWORD UPDATED")
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            Button("update email") {
+                Task {
+                    do {
+                        try await settingsViewModel.updateEmail()
+                        print("EMAIL UPDATED ")
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
         }
     }
 }
