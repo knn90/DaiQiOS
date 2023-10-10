@@ -11,7 +11,14 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     
     func signOut()  throws {
-     try AuthenticationManager.shared.signOut()
+        try AuthenticationManager.shared.signOut()
+    }
+    func resetPassword() async throws {
+        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
+        guard let email = authUser.email else {
+            throw URLError(.fileDoesNotExist)
+        }
+        try await AuthenticationManager.shared.resetPassword(email: email)
     }
 }
 
@@ -26,6 +33,17 @@ struct SettingView: View {
                     do {
                         try settingsViewModel.signOut()
                         showSignInView = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            Button("reset password") {
+                Task {
+                    do {
+                        try await settingsViewModel.resetPassword()
+                        print("PASSWORD RESET")
                     } catch {
                         print(error)
                     }

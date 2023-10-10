@@ -41,6 +41,23 @@ final class AuthenticationManager {
         return  AuthDataResultModel(user: authDataResult.user)
     }
     
+    func resetPassword(email: String) async throws  {
+      try await  Auth.auth().sendPasswordReset(withEmail: email)
+    }
+    
+    func updatePassword(password: String) async throws {
+       guard let user = Auth.auth().currentUser else {
+           throw URLError(.badServerResponse)
+        }
+      try await  user.updatePassword(to: password)
+    }
+    func updatePassword(password: String) async throws {
+       guard let user = Auth.auth().currentUser else {
+           throw URLError(.badServerResponse)
+        }
+      try await  user.updatePassword(to: password)
+    }
+    
     func signOut() throws {
         try Auth.auth().signOut()
     }
