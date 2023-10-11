@@ -22,7 +22,7 @@ final class SettingsViewModel: ObservableObject {
     }
     
     func updateEmail() async throws {
-        let email = "asd@gmail.com"
+        let email = " "
         try await AuthenticationManager.shared.updateEmail(email: email)
     }
     func updatePassword() async throws {
