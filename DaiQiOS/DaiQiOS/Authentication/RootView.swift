@@ -12,14 +12,18 @@ struct RootView: View {
     var body: some View {
         
         ZStack {
-            NavigationStack {
-                SettingView(showSignInView: $showSignInView)
+            if !showSignInView
+            {
+                NavigationStack {
+                    SettingView(showSignInView: $showSignInView)
+                }
             }
+        }
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 self.showSignInView = authUser == nil
             }
-        }
+        
         .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack {
                 AuthenticationView(showSignInView: $showSignInView)
