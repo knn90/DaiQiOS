@@ -17,7 +17,7 @@ final class SettingsViewModel: ObservableObject {
             authProviders = providers
         }
     }
-
+    
     func signOut()  throws {
         try AuthenticationManager.shared.signOut()
     }
@@ -43,7 +43,19 @@ struct SettingView: View {
     @StateObject private var settingsViewModel = SettingsViewModel()
     @Binding var showSignInView: Bool
     
+    @StateObject var listViewModel: ListViewModel = ListViewModel()
+    @StateObject var addTaskViewModel: AddTaskViewModel = AddTaskViewModel()
+    @StateObject var editTaskViewModel: EditTaskViewModel = EditTaskViewModel()
+    
     var body: some View {
+        
+        NavigationStack {
+            TodayChecklist()
+                .environmentObject(listViewModel)
+                .environmentObject(addTaskViewModel)
+                .environmentObject(editTaskViewModel)
+        }
+        Spacer()
         List {
             Button("log out") {
                 Task {
@@ -59,6 +71,7 @@ struct SettingView: View {
                 changeSection
             }
         }
+        .listStyle(GroupedListStyle())
         .onAppear {
             settingsViewModel.loadAuthProviders()
         }

@@ -19,7 +19,7 @@ final class SignInEmailViewModel: ObservableObject {
         }
        try await AuthenticationManager.shared.createUser(email: email, password: password)
     }
-    func signIp() async throws {
+    func signIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("No email or password found")
             return
@@ -54,7 +54,7 @@ struct SignInEmailView: View {
                     }
                     
                     do {
-                        try await  signInEmailViewModel.signIp()
+                        try await  signInEmailViewModel.signIn()
                         showSignInView = false
                         return
                     } catch {
