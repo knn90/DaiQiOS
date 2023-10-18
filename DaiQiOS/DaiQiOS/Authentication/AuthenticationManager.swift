@@ -12,11 +12,13 @@ struct AuthDataResultModel {
     let uid : String
     let email : String?
     let photoURL: String?
+    let isGuest: Bool
     
     init(user: User) {
         self.uid = user.uid
         self.email = user.email
         self.photoURL = user.photoURL?.absoluteString
+        self.isGuest = user.isAnonymous
     }
 }
 
@@ -98,6 +100,14 @@ extension AuthenticationManager {
     
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
+       return  AuthDataResultModel(user: authDataResult.user)
+    }
+}
+//mark: sign in guest
+extension AuthenticationManager {
+    @discardableResult
+    func signInGuest() async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signInAnonymously()
        return  AuthDataResultModel(user: authDataResult.user)
     }
 }

@@ -17,6 +17,9 @@ final class AuthenticationViewModel: ObservableObject {
         let tokens = try await helper.signIn()
         try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
 }
+    func signInGuest() async throws {
+        try await AuthenticationManager.shared.signInGuest()
+}
 }
 
 struct AuthenticationView: View {
@@ -24,6 +27,23 @@ struct AuthenticationView: View {
     @Binding var showSignInView : Bool
     var body: some View {
         VStack {
+            Button (action: {
+                Task {
+                    do {
+                        try await viewModel.signInGuest()
+                        showSignInView = false
+                    } catch {
+                        print(error)
+                    }
+                }
+            }, label: { Text("Sign in as Guest ")
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(Color.orange.opacity(0.4))
+                .cornerRadius(10)
+        })
             NavigationLink {
                 SignInEmailView(showSignInView: $showSignInView)
             } label: {

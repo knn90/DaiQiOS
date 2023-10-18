@@ -62,6 +62,7 @@
 		6E559BDD2AD65A98006A80D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6E559BE12AD6610F006A80D4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		6E559BE32AD69747006A80D4 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
+		6E7414842ADF804F00E0E6FB /* DaiQiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaiQiOS.entitlements; sourceTree = "<group>"; };
 		6ED261042AB95AB100F711A7 /* AddTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTask.swift; sourceTree = "<group>"; };
 		6ED4A3852AAEC5D20015644D /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		6ED4A3872AAEC68A0015644D /* CheckListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		6AF080EA2AAACC00007810B8 /* DaiQiOS */ = {
 			isa = PBXGroup;
 			children = (
+				6E7414842ADF804F00E0E6FB /* DaiQiOS.entitlements */,
 				6E559BDC2AD65A11006A80D4 /* Info.plist */,
 				6E4209EE2AD13FA80047DFFE /* Authentication */,
 				6ED4A3892AAECAB80015644D /* EditTask.swift */,
@@ -455,10 +457,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DaiQiOS/DaiQiOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DaiQiOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X97X2JU2N3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaiQiOS/Info.plist;
@@ -486,10 +489,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DaiQiOS/DaiQiOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DaiQiOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X97X2JU2N3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaiQiOS/Info.plist;
